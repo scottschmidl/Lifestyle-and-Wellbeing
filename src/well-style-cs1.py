@@ -189,8 +189,15 @@ def norm_dist(mean, std): #NEEDS ATTENTION
     
 ##################################plotting data##################################
 
-def age_vs_bal():
-    pass
+def age_vs_bal(age):
+    fig, ax = plt.subplots()
+    ax.plot(x=f'{age}', y=np.linspace(male_dict['Male']))
+    ax.set_ylim(ymin=0, ymax=169)
+    ax.set_title('age vs balance score')
+    ax.set_xlabel('placeholder')
+    ax.set_ylabel('balance score')
+    ax.legend()
+    plt.show()
 
 def m_f_vs_bal():
     pass
