@@ -5,16 +5,10 @@ import scipy.stats as stats
 
 df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
-#################################before cleaning of data################################
-
 #print('BEFORE CLEANING:\n') 
-#print(df.info(), '\n')
+#print(df.info())
 #print(df.describe())
 #print(df.head(50))
-#print(df.tail(50))
-#print(df.sample(50))
-
-#################################cleaning of data################################
 
 def clean_data():
     pass
@@ -25,70 +19,44 @@ df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for da
 df.rename(columns={'gender':'male_female'}, inplace=True)
 df_fix = df.astype({'daily_stress':'int64'})
 df_fix.replace('Less than 20', '20 or less', inplace=True)
+    
 #print('AFTER CLEANING:\n')
 #print(df_fix.info())
-#print(df.describe())
+#print(df_fix.describe())
 
-########################sorting data by what i want to plot########################
+#sorting data
 
-def sort_data():
-    pass
-
-df2 = df_fix.groupby('male_female').sum()
-#print(df2)
-
-df3 = df_fix.groupby('age').sum()
-#print(df3)
-
-df1_ = df_fix.sort_values(by=['male_female', 'age'])
-#print(df1)
-
-df2_ = df_fix.sort_values(by='male_female', axis=0)
-#print(df2_)
-
-df3_ = df_fix.sort_values(by='age', axis=0, ascending=False)
-#print(df3_)
-
-df4_ = df_fix.sort_values(by='bal_score', axis=0, ascending=False)
-#print(df4_)
-
-df9 = df_fix.groupby(['male_female', 'age'])
-male_age_20 = df9.get_group(('Male','20 or less'))
-#print(male_age_20)
-
-male_age_21 = df9.get_group(('Male', '21 to 35'))
-#print(male_age_21)
-
-male_age_36 = df9.get_group(('Male', '36 to 50'))
-#print(male_age_36)
-
-male_age_51 = df9.get_group(('Male', '51 or more'))
-#print(male_age_51)
-
-female_age_20 = df9.get_group(('Female','20 or less'))
-#print(female_age_20)
-
-female_age_21 = df9.get_group(('Female', '21 to 35'))
-#print(female_age_21)
-
-female_age_36 = df9.get_group(('Female', '36 to 50'))
-#print(female_age_36)
-
-female_age_51 = df9.get_group(('Female', '51 or more'))
-#print(female_age_51)
-
-m_f_group = df_fix.groupby('male_female')
+mf_age_group = df_fix.groupby(['male_female', 'age'])
+mf_group = df_fix.groupby('male_female')
 ages_group = df_fix.groupby('age')
 
-male_group = m_f_group.get_group('Male')
-male_bal = male_group.iloc[:, 22:24]
-male_bal.rename(columns={'male_female':'males'}, inplace=True)
-male_bal_scores_list = male_bal['bal_score'].tolist()
+def sort_mf_age(mf, ages, m_f):
+    '''mf = group to get out of Male or Female - str
+       ages = age range to get our of 20 or less, 21 to 35, 36 to 50, 51 or more - str
+       m_f = rename male_female column as either males or females - str
+        
+        returns - list of balance scores depending on which group'''
 
-female_group = m_f_group.get_group('Female')
-female_bal = female_group.iloc[:, 22:24]
-female_bal.rename(columns={'male_female':'females'}, inplace=True)
-female_bal_scores_list = female_bal['bal_score'].tolist()
+    mf_ages = mf_age_group.get_group((f'{mf}', f'{ages}'))
+    mf_ages_bal = mf_ages.iloc[:, 21:24]
+    mf_ages_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
+    mf_ages_scores = mf_ages_bal['bal_score'].tolist()
+    return mf_ages_scores
+
+def sort_mf(mf, m_f):
+    '''mf = group to get out of Male or Female - str
+       m_f = rename male_female column as either males or females - str
+       
+       returns - list of balance scores for either all males or females'''
+
+    male_female = mf_group.get_group(f'{mf}')
+    mf_bal = male_female.iloc[:, 22:24]
+    mf_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
+    mf_bal_scores = mf_bal['bal_score'].tolist()
+    return mf_bal_scores
+
+def sort_age(ages):
+    pass
 
 group_20 = ages_group.get_group('20 or less')
 bal_20 = group_20.iloc[:, 21:24:2]
@@ -110,41 +78,30 @@ bal_51 = group_51.iloc[:, 21:24:2]
 bal_51.rename(columns={'age':'51 or more'}, inplace=True)
 balacc_list_51 = bal_51['bal_score'].tolist()
 
-##########################indexing into data to visualize##########################
-
-df5 = df2_.iloc[:,22:24]
-df6 = df3_.iloc[:, 21:24]
-df7 = df4_.iloc[:, 23]
-df8 = df1_.iloc[:, 21:24] 
-#print(f'sorted by male_female:\n {df5} \n')
-#print(f'sorted by age:\n {df6} \n')
-#print(f'sorted by bal_score:\n {df7}')
-#print(f'sorted by ages and male_female:\n {df1_}')
-
-def convert_to_list(col):
+def convert_to_list():
 
     '''returns the balance score column as list'''
 
-    return df_fix[f'{col}'].tolist()
+    return df_fix['bal_score'].tolist()
+
+def get_means(lst):
+
+    '''returns means of whole/sample balance scores'''
+
+    return np.mean(lst)
+    
+def get_standard_deviations(lst):
+
+    '''returns standard deviation of whole/sample balance scores'''
+
+    return np.std(lst)
 
 def group_to_dict(group):
-
+  
     '''returns dictionary with group as the key and a subset of the
        balance score list as the value'''
 
-    if group == 'Male':
-        male_dict = {}
-        for m in male_bal.iloc[0:, 0:1]:
-            male_dict[m] = male_bal_scores_list
-            return male_dict
-    
-    elif group == 'Female':
-        female_dict = {}
-        for f in female_bal.iloc[0:, 0:1]:
-            female_dict[f] = female_bal_scores_list
-            return female_dict
-
-    elif group == '20 or less':
+    if group == '20 or less':
         dict_20 = {}
         for a in bal_20.iloc[0:, 0:1]:
             dict_20[a] = balacc_list_20
@@ -170,135 +127,140 @@ def group_to_dict(group):
 
     return 'not a valid group'
 
-def get_means(lst):
-
-    '''returns means of whole/sample balance scores'''
-
-    return np.mean(lst)
-    
-def get_standard_deviations(lst):
-
-    '''returns standard deviation of whole/sample balance scores'''
-
-    return np.std(lst)
-
 def norm_dist(mean, std): #NEEDS ATTENTION
-    
+
     norm = stats.norm(mean, std)
+
     return norm.cdf(90)
     
-##################################plotting data##################################
+def plot_bal_by_age():
+    
+    x = dict_20['20 or less']
+    x1 = dict_21['21 to 35']
+    x2 = dict_36['36 to 50']
+    x3 = dict_51['51 or more']
 
-def age_vs_bal(age):
-    fig, ax = plt.subplots()
-    ax.plot(x=f'{age}', y=np.linspace(male_dict['Male']))
-    ax.set_ylim(ymin=0, ymax=169)
-    ax.set_title('age vs balance score')
-    ax.set_xlabel('placeholder')
-    ax.set_ylabel('balance score')
-    ax.legend()
+    fig, axes = plt.subplots(2, 2, figsize=(6, 5))
+    ax0, ax1, ax2, ax3 = axes.flatten()
+       
+    ax0.hist(x, 100)
+    ax0.axis([0, 169.5, 0, 205])
+    ax0.set_title('20 or less')
+    ax0.set_xlabel('Balance Score')
+
+    ax1.hist(x1, 100)
+    ax1.axis([0, 169.5, 0, 205])
+    ax1.set_title('21 to 36')
+    ax1.set_xlabel('Balance Score')
+
+    ax2.hist(x2, 100)
+    ax2.axis([0, 169.5, 0, 205])
+    ax2.set_title('36 To 50')
+    ax2.set_xlabel('Balance Score')
+
+    ax3.hist(x3, 100)
+    ax3.axis([0, 169.5, 0, 205])
+    ax3.set_title('51 Or More')
+    ax3.set_xlabel('Balance Score')
+
+    plt.tight_layout()
     plt.show()
 
-def m_f_vs_bal():
+def plot_bal_by_mf():
+    
+    x = male_dict['males']
+    x1 = female_dict['females']
+  
+    fig, axes = plt.subplots(2, 1, figsize=(6, 5))
+    ax0, ax1 = axes.flatten()
+       
+    ax0.hist(x, 100)
+    ax0.axis([0, 169.5, 0, 350])
+    ax0.set_xlabel('males')
+    ax0.set_ylabel('Balance Score')
+
+    ax1.hist(x1, 100)
+    ax1.axis([0, 169.5, 0, 350])
+    ax1.set_xlabel('females')
+    ax1.set_ylabel('Balance Score')
+
+    plt.tight_layout()
+    plt.show()
+
+def plot_bal_by_mf_age():
     pass
 
-def age_ranges_mean_var_std():
+def plot_male_female_mean_var_std():
     pass
-
-def male_female_mean_var_std():
-    pass
-
-################################answers to the 20 question work-life-balance test################################
-
-def find_min_max_possible(q1_a, q2_a, q3_a, q4_a, q5_a, q6_a, q7_a, q8_a, q9_a, q10_a, q11_a, q12_a, q13_a, q14_a, q15_a, q16_a, q17_a, q18_a, q19_a, q20_a):
-
-    '''returns the min and max possible scores'''
-
-    min_possible_score = q1_a[0] + q2_a[0] + q3_a[0] + q4_a[0] + q5_a[0] + q6_a[0] + q7_a[0] + q8_a[0] + q9_a[0] + q10_a[0] + q11_a[0] + q12_a[0] + q13_a[0] + q14_a[0] + q15_a[0] + q16_a[0] + q17_a[0] + q18_a[0] + q19_a[0] + q20_a[0]
-    max_possible_score = q1_a[-1] + q2_a[-1] + q3_a[-1] + q4_a[-1] + q5_a[-1] + q6_a[-1] + q7_a[-1] + q8_a[-1] + q9_a[-1] + q10_a[-1] + q11_a[-1] + q12_a[-1] + q13_a[-1] + q14_a[-1] + q15_a[-1] + q16_a[-1] + q17_a[-1] + q18_a[-1] + q19_a[-1] + q20_a[-1]
-    return [min_possible_score, max_possible_score]
-
-#####################################INEMB#####################################
 
 if __name__ == '__main__':
-    bal_scores_to_list = convert_to_list('bal_score')
 
-    ##########################mean/std for full balance score##########################
+    sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
+    
+    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
+
+    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
+
+    sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
+
+    sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
+
+    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
+
+    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
+
+    sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
+
+    sort_males = sort_mf('Male', 'males')
+
+    sort_females = sort_mf('Female', 'females')
+    print('\n',sort_females)
+
+    bal_scores_to_list = convert_to_list()
 
     mean_whole_list = get_means(bal_scores_to_list)
-    #print(f'Mean of whole balance scores: {mean_whole_list}\n')
 
     std_whole_list = get_standard_deviations(bal_scores_to_list)
-    #print(f'Standard Deviation of balance scores: {std_whole_list}\n')
 
-    ##########################means/std for male_female balance score subsets##########################
-
-    mean_male_bal = get_means(male_bal_scores_list)
-    #print(f'Mean of male balance scores: {mean_male_bal}\n')
+    mean_male_bal = get_means(sort_males)
         
-    mean_female_bal = get_means(female_bal_scores_list)
-    #print(f'Mean of female balance scores: {mean_female_bal}\n')
+    mean_female_bal = get_means(sort_females)
     
     mean_20_bal = get_means(balacc_list_20)
-    #print(f'Mean of 20 or less balance scores: {mean_20_bal}\n')
 
     mean_21_bal = get_means(balacc_list_21)
-    #print(f'Mean of 21 to 36 balance scores: {mean_21_bal}\n')
 
     mean_36_bal = get_means(balacc_list_36)
-    #print(f'Mean of 36 to 51 balance scores: {mean_36_bal}\n')
 
     mean_51_bal = get_means(balacc_list_51)
-    #print(f'Mean of 51 or more balance scores: {mean_51_bal}\n')
 
-    std_male_bal = get_standard_deviations(male_bal_scores_list)
-    #print(f'Standard Deviation of male balance scores: {std_male_bal}\n')
+    std_male_bal = get_standard_deviations(sort_males)
 
-    std_female_bal = get_standard_deviations(female_bal_scores_list)
-    #print(f'Standard Deviation of female balance scores: {std_female_bal}\n')
+    std_female_bal = get_standard_deviations(sort_females)
 
     std_20_bal = get_standard_deviations(balacc_list_20)
-    #print(f'Standard Deviation of males: {std_20_bal}\n')
 
     std_21_bal = get_standard_deviations(balacc_list_21)
-    #print(f'Standard Deviation of males: {std_21_bal}\n')
 
     std_36_bal = get_standard_deviations(balacc_list_36)
-    #print(f'Standard Deviation of males: {std_36_bal}\n')
 
     std_51_bal = get_standard_deviations(balacc_list_51)
-    #print(f'Standard Deviation of males: {std_51_bal}')
-
-    ##########################dictionary for all balance score subsets##########################
 
     male_dict = group_to_dict('Male')
-    #print(f'Dictionary of male and their balance scores list: {male_dict}\n')
 
     female_dict = group_to_dict('Female')
-    #print(f'Dictionary of female and their balance scores list: {female_dict}\n')
 
     dict_20 = group_to_dict('20 or less')    
-    #print(f'Dictionary of ages 20 or less and their balance scores list:{dict_20}\n')
 
     dict_21 = group_to_dict('21 to 35')    
-    #print(f'Dictionary of ages 21 to 35 and their balance scores list:{dict_21}\n')
 
     dict_36 = group_to_dict('36 to 50')    
-    #print(f'Dictionary of ages 36 to 50 and their balance scores list:{dict_36}\n')
 
     dict_51 = group_to_dict('51 or more')    
-    #print(f'Dictionary of ages 51 or more and their balance scores list:{dict_51}\n')
 
-    ##########################normal distribution##########################
-    norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
+    #norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
     #print(f'Normal Distribution for 51 or more: {norm_dist_51}')
 
-    ##########################calculates min/max possible values for balance score##########################
-
-    min_max_possible_scores = find_min_max_possible(q1_a=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q2_a=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q3_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                                                    q4_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q5_a=[0, 1, 2, 3, 4, 5], q6_a=[1, 2], q7_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                                                    q8_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q9_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q10_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                                                    q11_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q12_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q13_a=[1, 2], q14_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                                                    q15_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q16_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q17_a=[0, 1, 2, 3, 4, 5],
-                                                    q18_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], q19_a=[0, 1, 2, 3, 4, 5], q20_a=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    #print(f'here are the possible min and max values: {min_max_possible_scores}')
+    #plot_bal_ages = plot_bal_by_age()
+    #plot_bal_m_f =  plot_bal_by_mf()
+    #plot_bal_mf_a = plot_bal_by_mf_age()
