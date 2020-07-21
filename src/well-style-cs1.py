@@ -10,27 +10,27 @@ df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 #print(df.describe())
 #print(df.head(50))
 
-def clean_data():
-    pass
-
-df['bal_score'] = df.sum(axis=1)
-df.columns = map(str.lower, df.columns)
 df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
-df.rename(columns={'gender':'male_female'}, inplace=True)
-df_fix = df.astype({'daily_stress':'int64'})
-df_fix.replace('Less than 20', '20 or less', inplace=True)
+
+def clean_data(df):
     
-#print('AFTER CLEANING:\n')
-#print(df_fix.info())
-#print(df_fix.describe())
+    df['bal_score'] = df.sum(axis=1)
+    df.columns = map(str.lower, df.columns)
+    df.rename(columns={'gender':'male_female'}, inplace=True)
+    df_fix = df.astype({'daily_stress':'int64'})
+    df_fix.replace('Less than 20', '20 or less', inplace=True)
+    return df_fix
+    
+#print(clean_data(df).info()) 
+#print(clean_data(df).describe())
+#print(clean_data(df).head())
 
-#sorting data
-
-mf_age_group = df_fix.groupby(['male_female', 'age'])
-mf_group = df_fix.groupby('male_female')
-ages_group = df_fix.groupby('age')
+mf_age_group = clean_data(df).groupby(['male_female', 'age'])
+mf_group = clean_data(df).groupby('male_female')
+ages_group = clean_data(df).groupby('age')
 
 def sort_mf_age(mf, ages, m_f):
+
     '''mf = group to get out of Male or Female - str
        ages = age range to get our of 20 or less, 21 to 35, 36 to 50, 51 or more - str
        m_f = rename male_female column as either males or females - str
@@ -44,6 +44,7 @@ def sort_mf_age(mf, ages, m_f):
     return mf_ages_scores
 
 def sort_mf(mf, m_f):
+
     '''mf = group to get out of Male or Female - str
        m_f = rename male_female column as either males or females - str
        
@@ -56,33 +57,22 @@ def sort_mf(mf, m_f):
     return mf_bal_scores
 
 def sort_age(ages):
-    pass
 
-group_20 = ages_group.get_group('20 or less')
-bal_20 = group_20.iloc[:, 21:24:2]
-bal_20.rename(columns={'age':'20 or less'}, inplace=True)
-balacc_list_20 = bal_20['bal_score'].tolist()
+    '''ages = group to get out of the four ages - str
+        
+        returns - list of balance scores for the four age ranges '''
 
-group_21 = ages_group.get_group('21 to 35')
-bal_21 = group_21.iloc[:, 21:24:2]
-bal_21.rename(columns={'age':'21 to 35'}, inplace=True)
-balacc_list_21 = bal_21['bal_score'].tolist()
-
-group_36 = ages_group.get_group('36 to 50')
-bal_36 = group_36.iloc[:, 21:24:2]
-bal_36.rename(columns={'age':'36 to 50'}, inplace=True)
-balacc_list_36 = bal_36['bal_score'].tolist()
-
-group_51 = ages_group.get_group('51 or more')
-bal_51 = group_51.iloc[:, 21:24:2]
-bal_51.rename(columns={'age':'51 or more'}, inplace=True)
-balacc_list_51 = bal_51['bal_score'].tolist()
+    group_of_ages = ages_group.get_group(f'{ages}')
+    bal_ages = group_of_ages.iloc[:, 21:24:2]
+    bal_ages.rename(columns={'age':f'{ages}'})
+    balscore_list_age = bal_ages['bal_score'].tolist()
+    return balscore_list_age
 
 def convert_to_list():
 
     '''returns the balance score column as list'''
 
-    return df_fix['bal_score'].tolist()
+    return clean_data(df)['bal_score'].tolist()
 
 def get_means(lst):
 
@@ -96,49 +86,15 @@ def get_standard_deviations(lst):
 
     return np.std(lst)
 
-def group_to_dict(group):
-  
-    '''returns dictionary with group as the key and a subset of the
-       balance score list as the value'''
-
-    if group == '20 or less':
-        dict_20 = {}
-        for a in bal_20.iloc[0:, 0:1]:
-            dict_20[a] = balacc_list_20
-            return dict_20
-
-    elif group == '21 to 35':
-        dict_21 = {}
-        for a in bal_21.iloc[0:, 0:1]:
-            dict_21[a] = balacc_list_21
-            return dict_21
-
-    elif group == '36 to 50':
-        dict_36 = {}
-        for a in bal_36.iloc[0:, 0:1]:
-            dict_36[a] = balacc_list_36
-            return dict_36
-
-    elif group == '51 or more':
-        dict_51 = {}
-        for a in bal_51.iloc[0:, 0:1]:
-            dict_51[a] = balacc_list_51
-            return dict_51
-
-    return 'not a valid group'
-
 def norm_dist(mean, std): #NEEDS ATTENTION
-
-    norm = stats.norm(mean, std)
-
-    return norm.cdf(90)
+    pass
     
 def plot_bal_by_age():
     
-    x = dict_20['20 or less']
-    x1 = dict_21['21 to 35']
-    x2 = dict_36['36 to 50']
-    x3 = dict_51['51 or more']
+    x = sort_20
+    x1 = sort_21
+    x2 = sort_36
+    x3 = sort_51
 
     fig, axes = plt.subplots(2, 2, figsize=(6, 5))
     ax0, ax1, ax2, ax3 = axes.flatten()
@@ -168,8 +124,8 @@ def plot_bal_by_age():
 
 def plot_bal_by_mf():
     
-    x = male_dict['males']
-    x1 = female_dict['females']
+    x = sort_males
+    x1 = sort_females
   
     fig, axes = plt.subplots(2, 1, figsize=(6, 5))
     ax0, ax1 = axes.flatten()
@@ -214,7 +170,14 @@ if __name__ == '__main__':
     sort_males = sort_mf('Male', 'males')
 
     sort_females = sort_mf('Female', 'females')
-    print('\n',sort_females)
+
+    sort_20 = sort_age('20 or less')
+
+    sort_21 = sort_age('21 to 35')
+
+    sort_36 = sort_age('36 to 50')
+    
+    sort_51 = sort_age('51 or more')
 
     bal_scores_to_list = convert_to_list()
 
@@ -226,37 +189,25 @@ if __name__ == '__main__':
         
     mean_female_bal = get_means(sort_females)
     
-    mean_20_bal = get_means(balacc_list_20)
+    mean_20_bal = get_means(sort_20)
 
-    mean_21_bal = get_means(balacc_list_21)
+    mean_21_bal = get_means(sort_21)
 
-    mean_36_bal = get_means(balacc_list_36)
+    mean_36_bal = get_means(sort_36)
 
-    mean_51_bal = get_means(balacc_list_51)
+    mean_51_bal = get_means(sort_51)
 
     std_male_bal = get_standard_deviations(sort_males)
 
     std_female_bal = get_standard_deviations(sort_females)
 
-    std_20_bal = get_standard_deviations(balacc_list_20)
+    std_20_bal = get_standard_deviations(sort_20)
 
-    std_21_bal = get_standard_deviations(balacc_list_21)
+    std_21_bal = get_standard_deviations(sort_21)
 
-    std_36_bal = get_standard_deviations(balacc_list_36)
+    std_36_bal = get_standard_deviations(sort_36)
 
-    std_51_bal = get_standard_deviations(balacc_list_51)
-
-    male_dict = group_to_dict('Male')
-
-    female_dict = group_to_dict('Female')
-
-    dict_20 = group_to_dict('20 or less')    
-
-    dict_21 = group_to_dict('21 to 35')    
-
-    dict_36 = group_to_dict('36 to 50')    
-
-    dict_51 = group_to_dict('51 or more')    
+    std_51_bal = get_standard_deviations(sort_51)
 
     #norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
     #print(f'Normal Distribution for 51 or more: {norm_dist_51}')
