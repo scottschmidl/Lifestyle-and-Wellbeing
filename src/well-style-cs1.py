@@ -6,6 +6,7 @@ import scipy.stats as stats
 df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
 #################################before cleaning of data################################
+
 #print('BEFORE CLEANING:\n') 
 #print(df.info(), '\n')
 #print(df.describe())
@@ -14,6 +15,7 @@ df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 #print(df.sample(50))
 
 #################################cleaning of data################################
+
 def clean_data():
     pass
 
@@ -28,6 +30,7 @@ df_fix.replace('Less than 20', '20 or less', inplace=True)
 #print(df.describe())
 
 ########################sorting data by what i want to plot########################
+
 def sort_data():
     pass
 
@@ -108,6 +111,7 @@ bal_51.rename(columns={'age':'51 or more'}, inplace=True)
 balacc_list_51 = bal_51['bal_score'].tolist()
 
 ##########################indexing into data to visualize##########################
+
 df5 = df2_.iloc[:,22:24]
 df6 = df3_.iloc[:, 21:24]
 df7 = df4_.iloc[:, 23]
