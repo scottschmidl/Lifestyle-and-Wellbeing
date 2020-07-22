@@ -2,26 +2,47 @@
 
 
 # Table of Contents
-1. [BackGround and Motivation](#BackGround-and-Motivation)
-2. [Questions](#questions)
+1. [Background and Motivation](#BackGround-and-Motivation)
+2. [Questions](#Questions)
+3. [Data](#Data)
 4. [Closer Look](#Closer-Look)
-5. [Visualization](#visualization)
-6. [Conclusion](#conclusion)
-7. [Photo and Data Credits](#photo-and-data-credits)
+5. [Visualization](#Visualization)
+6. [Conclusion](#Conclusion)
+7. [Photo and Data Credits](#Photo-and-Data-Credits)
+8. [Extras](#Extras)
 
-BackGround And Motivation
+# Background And Motivation
 
-Questions
+For most of my life I have been into exercising, but for most of my life I was not consistent
+and I never got into lifting weights. It was not until the fall of 2017 were it became
+important to me as a lifestyle and now I do it almost every day. My motivation was I had
+realized how much better I felt after a good workout. It was then that I put the pieces
+together; those of exercising, eating right, the various stimulus one might encounter in a
+day and how one reacts to said stimulus can affect your day to day wellness.
+I strongly believe that one can prevent even conquer ailments such as stress and depression with the above remedies.
+This is what guided me to finding the ‘Lifestyle_and_Wellbeing_Data’ on kaggle.com.
 
-Closer Look
+# Data
 
-Visualization
+The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey responses, from July
+2015 until February 2020, covering the following 23 features: timestamp, fruits and veggies,
+daily stress, new places visited, core circle, supporting others, achievements, donations,
+BMI range, to do lists completed, flow, daily steps, life vision, sleep hours, lost vacation
+days, daily shouting, sufficient income, personal awards, time for passion, daily meditation,
+age, and male/female.
 
-Conclusion
+# Questions
 
-Photo and Data Credits
+What makes me interested in the results of this data set are 
 
-https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
+# Closer Look
+
+From min_max_poss.py:
+
+min possible score = 4
+max possible score = 169
+
+# Visualization
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf.png)
 
@@ -43,10 +64,24 @@ Figure 4: Comparing 5-number summary of ages
 
 Figure 5: Comparing 5-number summary of males and females
 
-From min_max_poss.py:
+# Conclusion
 
-min possible score = 4
-max possible score = 169
+# Photo and Data Credits
+
+The picture in my heading was taken from the main website:
+
+Link to main website:
+http://www.authentic-happiness.com/
+
+The data was acquired from:
+
+https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
+
+#Extras
+
+Link to Work-Life Balance Test:
+
+http://www.authentic-happiness.com/your-life-satisfaction-score
 
 Questions and range of respones on test:
 
@@ -132,8 +167,3 @@ Q20) How often do you shout or sulk at somebody?
 
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-Link to main website:
-http://www.authentic-happiness.com/
-
-Link to Work-Life Balance Test:
-http://www.authentic-happiness.com/your-life-satisfaction-score
