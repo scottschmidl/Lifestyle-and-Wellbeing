@@ -233,9 +233,9 @@ if __name__ == '__main__':
     # print(f'Normal Distribution for 51 or more: {norm_dist_m}')
 
     # plot_bal_ages = hist_bal_by_age()
-    ages_box = box_ages()
+    # ages_box = box_ages()
     # plot_bal_m_f =  hist_bal_by_mf()
-    mf_box = box_mf()
+    # mf_box = box_mf()
     # plot_bal_mf_a = hist_bal_by_mf_age()
     
     

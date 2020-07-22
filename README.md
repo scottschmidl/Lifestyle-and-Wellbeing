@@ -1,7 +1,25 @@
 ![happy girl](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
 
-# capstone-1
-The code, data, plots, proposal, tests, readme for capstone-1 project about work-life-balance from the authentic happiness
+
+# Table of Contents
+1. [BackGround and Motivation](#BackGround-and-Motivation)
+2. [Questions](#questions)
+4. [Closer Look](#Closer-Look)
+5. [Visualization](#visualization)
+6. [Conclusion](#conclusion)
+7. [Photo and Data Credits](#photo-and-data-credits)
+
+BackGround And Motivation
+
+Questions
+
+Closer Look
+
+Visualization
+
+Conclusion
+
+Photo and Data Credits
 
 https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
 
