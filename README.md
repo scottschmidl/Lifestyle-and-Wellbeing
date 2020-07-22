@@ -77,7 +77,7 @@ The data was acquired from:
 
 https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
 
-#Extras
+# Extras
 
 Link to Work-Life Balance Test:
 
