@@ -1,6 +1,8 @@
 # capstone-1
 The code, data, plots, proposal, tests, readme for capstone-1 project about work-life-balance from the authentic happiness
 
+![alt text](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
+
 ################################questions/answers################################
 q1 = 'how many steps(in thousads) do you typically walk everyday?'
 q1_a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

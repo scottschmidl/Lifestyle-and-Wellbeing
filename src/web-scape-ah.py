@@ -1,6 +1,9 @@
-import requests
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import re
 
-req = requests.get('http://www.authentic-happiness.com/')
-html = BeautifulSoup(req.content, 'html.parser')
-print(html.find_all('a'))
+html = urlopen('http://www.authentic-happiness.com/')
+bs = BeautifulSoup(html, 'html.parser')
+images = bs.find_all('img', {'src':re.compile('.jpg')})
+for image in images: 
+    print(image['src']+'\n')
