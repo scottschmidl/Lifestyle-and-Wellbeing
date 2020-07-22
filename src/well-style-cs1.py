@@ -29,8 +29,11 @@ cleaned_data = clean_data()
 #print(cleaned_data.head())
 
 mf_age_group = cleaned_data.groupby(['male_female', 'age'])
+#print(mf_age_group.describe())
 mf_group = cleaned_data.groupby('male_female')
+#print(mf_group.describe())
 ages_group = cleaned_data.groupby('age')
+#print(ages_group.describe())
 
 def sort_mf_age(mf, ages, m_f):
 
@@ -71,32 +74,32 @@ def sort_age(ages):
     balscore_list_age = bal_ages['bal_score'].tolist()
     return balscore_list_age
 
-def convert_to_list():
+##############what do i want to do with the below##############
+# def convert_to_list():
 
-    '''returns the balance score column as list'''
+#     '''returns the balance score column as list'''
 
-    return clean_data()['bal_score'].tolist()
+#     return clean_data()['bal_score'].tolist()
 
-def get_means(lst):
+# def get_means(lst):
 
-    '''returns means of whole/sample balance scores'''
+#     '''returns means of whole/sample balance scores'''
 
-    return np.mean(lst)
+#     return np.mean(lst)
     
-def get_standard_deviations(lst):
+# def get_standard_deviations(lst):
 
-    '''returns standard deviation of whole/sample balance scores'''
+#     '''returns standard deviation of whole/sample balance scores'''
 
-    return np.std(lst)
+#     return np.std(lst)
 
-def norm_dist(mean, std): #NEEDS ATTENTION
-    pass
+# def norm_dist(mean, std): #NEEDS ATTENTION
+#     pass
     
 def plot_bal_by_age():
 
     x = [[sort_20, sort_21], [sort_36, sort_51]]
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
-    
     fig, ax = plt.subplots(2, 2, figsize=(12, 5))
     
     for i in range(2):
@@ -113,94 +116,100 @@ def plot_bal_by_age():
 
 def plot_bal_by_mf():
     
-    x = sort_males
-    x1 = sort_females
-  
-    fig, axes = plt.subplots(2, 1, figsize=(6, 5))
-    ax0, ax1 = axes.flatten()
-       
-    ax0.hist(x, 100)
-    ax0.axis([0, 169.5, 0, 350])
-    ax0.set_xlabel('males')
-    ax0.set_ylabel('Balance Score')
+    x = [sort_males, sort_females]
+    titles = ['males', 'females']
+    fig, ax = plt.subplots(2, 1, figsize=(6,5))
 
-    ax1.hist(x1, 100)
-    ax1.axis([0, 169.5, 0, 350])
-    ax1.set_xlabel('females')
-    ax1.set_ylabel('Balance Score')
+    for i in range(2):
+        
+        ax[i].hist(x[i], 100)
+        ax[i].axis([0, 169.5, 0, 350])
+        ax[i].set_title(titles[i])
+        ax[i].set_xlabel('Balance Score')
 
     plt.tight_layout()
     plt.show()
 
 def plot_bal_by_mf_age():
-    x1 = sort_male_20
-    x2 = sort_male_21
-    x3 = sort_male_36
-    x4 = sort_male_51
-    pass
+    
+    x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51], [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
+    titles = [['m: 20 or lesss', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or lesss', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
+    fig, ax = plt.subplots(2, 4, figsize=(12, 4))
+    
+    for i in range(2):
 
+        for j in range(4):
+
+            ax[i][j].hist(x[i][j], 50)
+            ax[i][j].axis([0, 169.5, 0, 200])
+            ax[i][j].set_title(titles[i][j])
+            ax[i][j].set_xlabel('Balance Score')
+
+    plt.tight_layout()
+    plt.show()
+    
 def plot_male_female_mean_var_std():
     pass
 
 if __name__ == '__main__':
 
-    sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
+    # sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
     
-    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
+    # sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
 
-    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
+    # sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
 
-    sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
+    # sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
 
-    sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
+    # sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
 
-    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
+    # sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
 
-    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
+    # sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
 
-    sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
+    # sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
 
-    sort_males = sort_mf('Male', 'males')
+    # sort_males = sort_mf('Male', 'males')
 
-    sort_females = sort_mf('Female', 'females')
+    # sort_females = sort_mf('Female', 'females')
 
-    sort_20 = sort_age('20 or less')
+    # sort_20 = sort_age('20 or less')
 
-    sort_21 = sort_age('21 to 35')
+    # sort_21 = sort_age('21 to 35')
 
-    sort_36 = sort_age('36 to 50')
+    # sort_36 = sort_age('36 to 50')
     
-    sort_51 = sort_age('51 or more')
+    # sort_51 = sort_age('51 or more')
 
-    bal_scores_to_list = convert_to_list()
+    # bal_scores_to_list = convert_to_list()
 
-    mean_whole_list = get_means(bal_scores_to_list)
+    # mean_whole_list = get_means(bal_scores_to_list)
 
-    std_whole_list = get_standard_deviations(bal_scores_to_list)
+    # std_whole_list = get_standard_deviations(bal_scores_to_list)
 
-    mean_male_bal = get_means(sort_males)
+    # mean_male_bal = get_means(sort_males)
         
-    mean_female_bal = get_means(sort_females)
+    # mean_female_bal = get_means(sort_females)
     
-    mean_20_bal = get_means(sort_20)
+    # mean_20_bal = get_means(sort_20)
 
-    mean_21_bal = get_means(sort_21)
+    # mean_21_bal = get_means(sort_21)
 
-    mean_36_bal = get_means(sort_36)
+    # mean_36_bal = get_means(sort_36)
 
-    mean_51_bal = get_means(sort_51)
+    # mean_51_bal = get_means(sort_51)
 
-    std_male_bal = get_standard_deviations(sort_males)
+    # std_male_bal = get_standard_deviations(sort_males)
 
-    std_female_bal = get_standard_deviations(sort_females)
+    # std_female_bal = get_standard_deviations(sort_females)
 
-    std_20_bal = get_standard_deviations(sort_20)
+    # std_20_bal = get_standard_deviations(sort_20)
 
-    std_21_bal = get_standard_deviations(sort_21)
+    # std_21_bal = get_standard_deviations(sort_21)
 
-    std_36_bal = get_standard_deviations(sort_36)
+    # std_36_bal = get_standard_deviations(sort_36)
 
-    std_51_bal = get_standard_deviations(sort_51)
+    # std_51_bal = get_standard_deviations(sort_51)
 
     #norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
     #print(f'Normal Distribution for 51 or more: {norm_dist_51}')

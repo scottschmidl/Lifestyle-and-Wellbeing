@@ -64,3 +64,7 @@ q19_a = [0, 1, 2, 3, 4, 5]
 
 q20 = 'how often do you shout or sulk at somebody?'
 q20_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+http://www.authentic-happiness.com/
+
+http://www.authentic-happiness.com/your-life-satisfaction-score
