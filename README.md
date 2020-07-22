@@ -17,6 +17,14 @@ Figure 2: Comparing the balance scores of four age ranges
 
 Figure 3: Comparing the balance scores of four age ranges amongst males and females
 
+![](/galvanize_dsi/capstone-1/images/box_ages.png?raw=true)
+
+Figure 4: Comparing 5-number summary of ages
+
+![](/galvanize_dsi/capstone-1/images/box_mf.png?raw=true)
+
+Figure 5: Comparing 5-number summary of males and females
+
 From min_max_poss.py:
 
 min possible score = 4
