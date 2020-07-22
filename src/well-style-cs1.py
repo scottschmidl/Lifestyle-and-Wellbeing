@@ -112,7 +112,9 @@ def plot_bal_by_age():
             ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
+    plt.savefig('compare_balscores_ages.png')
     plt.show()
+    
 
 def plot_bal_by_mf():
     
@@ -128,6 +130,7 @@ def plot_bal_by_mf():
         ax[i].set_xlabel('Balance Score')
 
     plt.tight_layout()
+    plt.savefig('compare_balscores_mf.png')
     plt.show()
 
 def plot_bal_by_mf_age():
@@ -146,7 +149,8 @@ def plot_bal_by_mf_age():
             ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
-    plt.show()
+    plt.savefig('compare_balscores_mf_age.png')
+    plt.show()    
     
 def plot_male_female_mean_var_std():
     pass
@@ -214,6 +218,6 @@ if __name__ == '__main__':
     #norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
     #print(f'Normal Distribution for 51 or more: {norm_dist_51}')
 
-    #plot_bal_ages = plot_bal_by_age()
-    #plot_bal_m_f =  plot_bal_by_mf()
-    #plot_bal_mf_a = plot_bal_by_mf_age()
+    # plot_bal_ages = plot_bal_by_age()
+    # plot_bal_m_f =  plot_bal_by_mf()
+    # plot_bal_mf_a = plot_bal_by_mf_age()

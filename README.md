@@ -3,7 +3,19 @@ The code, data, plots, proposal, tests, readme for capstone-1 project about work
 
 ![alt text](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
 
-From mix_max_poss.py:
+/home/leonardo-leads/Documents/galvanize_dsi/capstone-1/images/compare_balscores_mf.png
+
+Figure 1: Comparing the balance scores of males and females
+
+/home/leonardo-leads/Documents/galvanize_dsi/capstone-1/images/compare_balscores_ages.png
+
+Figure 2: Comparing the balance scores of four age ranges
+
+/home/leonardo-leads/Documents/galvanize_dsi/capstone-1/images/compare_balscores_mf_ages.png
+
+Figure 3: Comparing the balance scores of four age ranges amonst males and females
+
+From min_max_poss.py:
 
 min possible score = 4
 max possible score = 169
@@ -79,6 +91,7 @@ Q17) How many fruits or vegetables do you eat everyday?
 [0, 1, 2, 3, 4, 5]
 
 Q18) In a typical day, how many hours do you experience 'flow'?
+
 flow - mental state, in which you are fully immersed in peforming an activity. You then experience a feeling of energized focus, full involvement, and enjoyment in the process of this activity.
 
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
