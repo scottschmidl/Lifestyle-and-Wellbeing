@@ -1,19 +1,19 @@
-![alt text](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
+![happy girl](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
 
 # capstone-1
 The code, data, plots, proposal, tests, readme for capstone-1 project about work-life-balance from the authentic happiness
 
 https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
 
-![]galvanize_dsi/capstone-1/images/compare_balscores_ages.png
+![](galvanize_dsi/capstone-1/images/compare_balscores_ages.png)
 
 Figure 1: Comparing the balance scores of males and females
 
-![]galvanize_dsi/capstone-1/images/compare_balscores_ages.png
+![](galvanize_dsi/capstone-1/images/compare_balscores_ages.png)
 
 Figure 2: Comparing the balance scores of four age ranges
 
-![]galvanize_dsi/capstone-1/images/compare_balscores_mf_ages.png
+![](galvanize_dsi/capstone-1/images/compare_balscores_mf_ages.png)
 
 Figure 3: Comparing the balance scores of four age ranges amongst males and females
 
