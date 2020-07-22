@@ -3,70 +3,74 @@ The code, data, plots, proposal, tests, readme for capstone-1 project about work
 
 ![alt text](http://www.authentic-happiness.com/_/rsrc/1514760169721/home/The%20Authentic%20Happiness%20Project%202018.jpg)
 
-################################questions/answers################################
-q1 = 'how many steps(in thousads) do you typically walk everyday?'
-q1_a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+From mix_max_poss.py:
+min possible score = 4
+max possible score = 169
 
-q2 = 'how many people are very close to you?'
-q2_a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+Questions and range of respones on test:
+Q1) How many steps(in thousads) do you typically walk everyday?
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q3 = 'how many people are very close to you?'
-q3_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q2) How many people are very close to you?
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 
-q4 = 'with how many people do you interact during a typical day?'
-q4_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q3) How many people are very close to you?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q5 = 'how many times do you donate your time or money to good causes?'
-q5_a = [0, 1, 2, 3, 4, 5]
+Q4) With how many people do you interact during a typical day?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q6 = 'how sufficient is your income to cover basic life expensives?'
-q6_a = [1, 2]
+Q5) How many times do you donate your time or money to good causes?
+[0, 1, 2, 3, 4, 5]
 
-q7 = 'of how many remarkable achievements are you proud?'
-q7_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q6) How sufficient is your income to cover basic life expensives?
+[1, 2]
 
-q8 = 'how many hours do you spend everyday doing about what you are passionate?'
-q8_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q7) Of how many remarkable achievements are you proud?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q9 = 'in a typical week, how many times do you have the opportunity to think about yourself? '
-q9_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q8) How many hours do you spend everyday doing about what you are passionate?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q10 = 'how many recognitions have you received in your life?'
-q10_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q9) In a typical week, how many times do you have the opportunity to think about yourself?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q11 = 'for how many years ahead is your life vision very clear?'
-q11_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q10) How many recognitions have you received in your life?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q12 = 'how many days of vacation do you typically lose every year?'
-q12_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q11) For how many years ahead is your life vision very clear?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q13 = 'what is your body mass index range?'
-q13_a = [1, 2] #1(below 25); 2(above 25)
+Q12) How many days of vacation do you typically lose every year?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q14= 'how many new places do you visit?'
-q14_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q13) What is your body mass index range?
+[1, 2] #1(below 25); 2(above 25)
 
-q15 = 'how well do you complete your weekly to-do lists?'
-q15_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q14) How many new places do you visit?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q16 = 'how many people do you help achieve a better life?'
-q16_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q15) How well do you complete your weekly to-do lists?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q17 = 'how many fruits or vegetables do you eat everyday?'
-q17_a = [0, 1, 2, 3, 4, 5]
+Q16) How many people do you help achieve a better life?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q18 = '''in a typical day, how many hours do you experience 'flow'?'''
-flow = '''mental state, in which you are fully immersed in peforming an activity.
-          You then experience a feeling of energized focus, full  involvement, and emjoyment
-          in the process of this activity'''
-q18_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q17) How many fruits or vegetables do you eat everyday?
+[0, 1, 2, 3, 4, 5]
 
-q19 = 'how much stress do you typically experience everyday?'
-q19_a = [0, 1, 2, 3, 4, 5]
+Q18) In a typical day, how many hours do you experience 'flow'?
+flow - mental state, in which you are fully immersed in peforming an activity. You then experience a feeling of energized focus, full involvement, and enjoyment in the process of this activity.
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-q20 = 'how often do you shout or sulk at somebody?'
-q20_a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+Q19) How much stress do you typically experience everyday?
+[0, 1, 2, 3, 4, 5]
 
+Q20) How often do you shout or sulk at somebody?
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+Link to main website:
 http://www.authentic-happiness.com/
 
+Link to Work-Life Balance Test:
 http://www.authentic-happiness.com/your-life-satisfaction-score
