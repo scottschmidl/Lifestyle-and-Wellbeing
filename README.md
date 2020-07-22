@@ -8,6 +8,7 @@ min possible score = 4
 max possible score = 169
 
 Questions and range of respones on test:
+
 Q1) How many steps(in thousads) do you typically walk everyday?
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
