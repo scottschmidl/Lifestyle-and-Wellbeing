@@ -113,7 +113,7 @@ def plot_bal_by_age():
             ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
-    plt.savefig('../images/compare_balscores_ages.png')
+    #plt.savefig('../images/compare_balscores_ages.png')
     #plt.show()
     
 
@@ -137,7 +137,7 @@ def plot_bal_by_mf():
 def plot_bal_by_mf_age():
     
     x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51], [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
-    titles = [['m: 20 or lesss', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or lesss', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
+    titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
     fig, ax = plt.subplots(2, 4, figsize=(12, 4))
         
     for i in range(2):
