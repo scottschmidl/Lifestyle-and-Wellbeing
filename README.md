@@ -5,15 +5,15 @@ The code, data, plots, proposal, tests, readme for capstone-1 project about work
 
 https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
 
-![](galvanize_dsi/capstone-1/images/compare_balscores_ages.png)
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf.png)
 
 Figure 1: Comparing the balance scores of males and females
 
-![](galvanize_dsi/capstone-1/images/compare_balscores_ages.png)
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_ages.png)
 
 Figure 2: Comparing the balance scores of four age ranges
 
-![](galvanize_dsi/capstone-1/images/compare_balscores_mf_ages.png)
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf_age.png)
 
 Figure 3: Comparing the balance scores of four age ranges amongst males and females
 
