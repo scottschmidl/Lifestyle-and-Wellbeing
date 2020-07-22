@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as stats
+import seaborn as sns
 
 df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
@@ -94,96 +95,95 @@ def sort_age(ages):
 #     return np.std(lst)
 
 # def norm_dist(mean, std): #NEEDS ATTENTION
-#     pass
+#     norm = stats.norm(loc=mean, scale=std)
+#     return norm.rvs(size=1000)
     
 def plot_bal_by_age():
 
     x = [[sort_20, sort_21], [sort_36, sort_51]]
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
     fig, ax = plt.subplots(2, 2, figsize=(12, 5))
-    
+        
     for i in range(2):
 
         for j in range(2):
 
-            ax[i][j].hist(x[i][j], 100)
-            ax[i][j].axis([0, 169.5, 0, 205])
+            sns.distplot(x[i][j], bins=100, kde=True, ax=ax[i][j])
             ax[i][j].set_title(titles[i][j])
             ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
-    plt.savefig('compare_balscores_ages.png')
-    plt.show()
+    plt.savefig('../images/compare_balscores_ages.png', transparent=True)
+    #plt.show()
     
 
 def plot_bal_by_mf():
     
     x = [sort_males, sort_females]
     titles = ['males', 'females']
-    fig, ax = plt.subplots(2, 1, figsize=(6,5))
-
+    fig, ax = plt.subplots(2, 1, figsize=(6,5))    
+   
     for i in range(2):
-        
-        ax[i].hist(x[i], 100)
-        ax[i].axis([0, 169.5, 0, 350])
+
+        sns.distplot(x[i], bins=100, kde=True, ax=ax[i])
         ax[i].set_title(titles[i])
         ax[i].set_xlabel('Balance Score')
+        
 
     plt.tight_layout()
-    plt.savefig('compare_balscores_mf.png')
-    plt.show()
+    plt.savefig('../images/compare_balscores_mf.png')
+    #plt.show()
 
 def plot_bal_by_mf_age():
     
     x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51], [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
     titles = [['m: 20 or lesss', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or lesss', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
     fig, ax = plt.subplots(2, 4, figsize=(12, 4))
-    
+        
     for i in range(2):
 
         for j in range(4):
 
-            ax[i][j].hist(x[i][j], 50)
-            ax[i][j].axis([0, 169.5, 0, 200])
+            sns.distplot(x[i][j], bins=100, kde=True, ax=ax[i][j])
             ax[i][j].set_title(titles[i][j])
             ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
-    plt.savefig('compare_balscores_mf_age.png')
-    plt.show()    
+    plt.savefig('../images/compare_balscores_mf_age.png')
+    #plt.show()    
     
 def plot_male_female_mean_var_std():
     pass
 
 if __name__ == '__main__':
 
-    # sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
+    sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
     
-    # sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
+    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
 
-    # sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
+    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
 
-    # sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
+    sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
 
-    # sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
+    sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
 
-    # sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
+    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
 
-    # sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
+    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
 
-    # sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
+    sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
 
-    # sort_males = sort_mf('Male', 'males')
+    sort_males = sort_mf('Male', 'males')
 
-    # sort_females = sort_mf('Female', 'females')
+    sort_females = sort_mf('Female', 'females')
 
-    # sort_20 = sort_age('20 or less')
+    sort_20 = sort_age('20 or less')
 
-    # sort_21 = sort_age('21 to 35')
+    sort_21 = sort_age('21 to 35')
 
-    # sort_36 = sort_age('36 to 50')
+    sort_36 = sort_age('36 to 50')
     
-    # sort_51 = sort_age('51 or more')
+    sort_51 = sort_age('51 or more')
 
     # bal_scores_to_list = convert_to_list()
 
@@ -215,9 +215,9 @@ if __name__ == '__main__':
 
     # std_51_bal = get_standard_deviations(sort_51)
 
-    #norm_dist_51 = norm_dist(mean_male_bal, std_male_bal)
-    #print(f'Normal Distribution for 51 or more: {norm_dist_51}')
+    # norm_dist_m = norm_dist(mean_male_bal, std_male_bal)
+    #print(f'Normal Distribution for 51 or more: {norm_dist_m}')
 
-    # plot_bal_ages = plot_bal_by_age()
-    # plot_bal_m_f =  plot_bal_by_mf()
-    # plot_bal_mf_a = plot_bal_by_mf_age()
+    plot_bal_ages = plot_bal_by_age()
+    plot_bal_m_f =  plot_bal_by_mf()
+    plot_bal_mf_a = plot_bal_by_mf_age()
