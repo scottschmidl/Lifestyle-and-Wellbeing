@@ -12,22 +12,25 @@ df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
 df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
 
-def clean_data(df):
-    
+def clean_data():
+
     df['bal_score'] = df.sum(axis=1)
     df.columns = map(str.lower, df.columns)
     df.rename(columns={'gender':'male_female'}, inplace=True)
     df_fix = df.astype({'daily_stress':'int64'})
     df_fix.replace('Less than 20', '20 or less', inplace=True)
+    
     return df_fix
     
-#print(clean_data(df).info()) 
-#print(clean_data(df).describe())
-#print(clean_data(df).head())
+cleaned_data = clean_data()
 
-mf_age_group = clean_data(df).groupby(['male_female', 'age'])
-mf_group = clean_data(df).groupby('male_female')
-ages_group = clean_data(df).groupby('age')
+#print(cleaned_data.info()) 
+#print(cleaned_data.describe())
+#print(cleaned_data.head())
+
+mf_age_group = cleaned_data.groupby(['male_female', 'age'])
+mf_group = cleaned_data.groupby('male_female')
+ages_group = cleaned_data.groupby('age')
 
 def sort_mf_age(mf, ages, m_f):
 
@@ -72,7 +75,7 @@ def convert_to_list():
 
     '''returns the balance score column as list'''
 
-    return clean_data(df)['bal_score'].tolist()
+    return clean_data()['bal_score'].tolist()
 
 def get_means(lst):
 
@@ -90,34 +93,20 @@ def norm_dist(mean, std): #NEEDS ATTENTION
     pass
     
 def plot_bal_by_age():
+
+    x = [[sort_20, sort_21], [sort_36, sort_51]]
+    titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
     
-    x = sort_20
-    x1 = sort_21
-    x2 = sort_36
-    x3 = sort_51
+    fig, ax = plt.subplots(2, 2, figsize=(12, 5))
+    
+    for i in range(2):
 
-    fig, axes = plt.subplots(2, 2, figsize=(6, 5))
-    ax0, ax1, ax2, ax3 = axes.flatten()
-       
-    ax0.hist(x, 100)
-    ax0.axis([0, 169.5, 0, 205])
-    ax0.set_title('20 or less')
-    ax0.set_xlabel('Balance Score')
+        for j in range(2):
 
-    ax1.hist(x1, 100)
-    ax1.axis([0, 169.5, 0, 205])
-    ax1.set_title('21 to 36')
-    ax1.set_xlabel('Balance Score')
-
-    ax2.hist(x2, 100)
-    ax2.axis([0, 169.5, 0, 205])
-    ax2.set_title('36 To 50')
-    ax2.set_xlabel('Balance Score')
-
-    ax3.hist(x3, 100)
-    ax3.axis([0, 169.5, 0, 205])
-    ax3.set_title('51 Or More')
-    ax3.set_xlabel('Balance Score')
+            ax[i][j].hist(x[i][j], 100)
+            ax[i][j].axis([0, 169.5, 0, 205])
+            ax[i][j].set_title(titles[i][j])
+            ax[i][j].set_xlabel('Balance Score')
 
     plt.tight_layout()
     plt.show()
@@ -144,6 +133,10 @@ def plot_bal_by_mf():
     plt.show()
 
 def plot_bal_by_mf_age():
+    x1 = sort_male_20
+    x2 = sort_male_21
+    x3 = sort_male_36
+    x4 = sort_male_51
     pass
 
 def plot_male_female_mean_var_std():
