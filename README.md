@@ -5,17 +5,17 @@ The code, data, plots, proposal, tests, readme for capstone-1 project about work
 
 https://www.kaggle.com/ydalat/lifestyle-and-wellbeing-data
 
-
+../capstone-1/images/compare_balscores_ages.png
 
 Figure 1: Comparing the balance scores of males and females
 
-
+../capstone-1/images/compare_balscores_ages.png
 
 Figure 2: Comparing the balance scores of four age ranges
 
+../capstone-1/images/compare_balscores_mf_ages.png
 
-
-Figure 3: Comparing the balance scores of four age ranges amonst males and females
+Figure 3: Comparing the balance scores of four age ranges amongst males and females
 
 From min_max_poss.py:
 
