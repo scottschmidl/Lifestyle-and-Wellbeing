@@ -64,6 +64,10 @@ Figure 4: Comparing 5-number summary of ages
 
 Figure 5: Comparing 5-number summary of males and females
 
+![]https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf_age.png
+
+Figure 6: Comparing 5-number summary of males and females by age
+
 # Conclusion
 
 # Photo and Data Credits
