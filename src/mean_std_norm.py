@@ -1,45 +1,86 @@
-# import well-style-cs1.py
+#might place mean, std, and norm data here
+import well_life_cs1
 
-# def get_means(lst):
+def get_means(lst):
 
-#     '''returns means of whole/sample balance scores'''
+    '''returns means of whole/sample balance scores'''
 
-#     return np.mean(lst)
+    return np.mean(lst)
 
-# def get_standard_deviations(lst):
+def get_standard_deviations(lst):
 
-#     '''returns standard deviation of whole/sample balance scores'''
+    '''returns standard deviation of whole/sample balance scores'''
 
-#     return np.std(lst)
+    return np.std(lst)
 
-# def norm_dist(mean, std):
-#     norm = stats.norm(mean, std)
-#     norm_cdf = norm.cdf(169) - norm.cdf(4)
-#     return norm_cdf
-
+def norm_dist(mean, std):
+    norm = stats.norm(mean, std)
+    samp_norm = norm.rvs(size=1000)
+    return samp_norm
+    
 # mean_male_bal = get_means(sort_males)
-        
+# print('males mean: ', mean_male_bal)
 # mean_female_bal = get_means(sort_females)
+# print('females mean: ', mean_female_bal)
 
 # mean_20_bal = get_means(sort_20)
-
+# print('20 or less mean: ', mean_20_bal)
 # mean_21_bal = get_means(sort_21)
-
+# print('21 or 35 mean: ', mean_21_bal)
 # mean_36_bal = get_means(sort_36)
-
+# print('36 or 50 mean: ', mean_36_bal)
 # mean_51_bal = get_means(sort_51)
+# print('51 or more mean: ', mean_51_bal)
+
+# mean_20m_bal = get_means(sort_male_20)
+# print('20m or less mean: ', mean_20m_bal)
+# mean_21m_bal = get_means(sort_male_21)
+# print('21m to 35 mean: ', mean_20m_bal)
+# mean_35m_bal = get_means(sort_male_20)
+# print('36m to 51 mean: ', mean_35m_bal)
+# mean_51m_bal = get_means(sort_male_20)
+# print('51m or more mean: ', mean_51m_bal)
+
+# mean_20f_bal = get_means(sort_female_20)
+# print('20f or less mean: ', mean_20f_bal)
+# mean_21f_bal = get_means(sort_female_21)
+# print('21f to 35 mean: ', mean_21f_bal)
+# mean_35f_bal = get_means(sort_female_20)
+# print('36f to 51 mean: ', mean_35f_bal)
+# mean_51f_bal = get_means(sort_female_20)
+# print('51f or more mean: ', mean_51f_bal)
 
 # std_male_bal = get_standard_deviations(sort_males)
-
+# print('males std: ', std_male_bal)
 # std_female_bal = get_standard_deviations(sort_females)
+# print('females std: ' ,std_female_bal)
 
 # std_20_bal = get_standard_deviations(sort_20)
-
+# print('20 or less std: ',std_20_bal)
 # std_21_bal = get_standard_deviations(sort_21)
-
+# print('21 to 35 std: ',mean_21_bal)
 # std_36_bal = get_standard_deviations(sort_36)
-
+# print('36 to 50 std: ', mean_36_bal)
 # std_51_bal = get_standard_deviations(sort_51)
+# print('51 or more std: ', mean_51_bal)
+
+# std_20m_bal = get_standard_deviations(sort_male_20)
+# print('20m or less mean: ', std_20m_bal)
+# std_21m_bal = get_standard_deviations(sort_male_21)
+# print('21m to 35 mean: ', std_21m_bal)
+# std_35m_bal = get_standard_deviations(sort_male_36)
+# print('36m to 51 mean: ', std_35m_bal)
+# std_51m_bal = get_standard_deviations(sort_male_51)
+# print('51m or more mean: ', std_51m_bal)
+
+# std_20f_bal = get_standard_deviations(sort_female_20)
+# print('20f or less mean: ', std_20f_bal)
+# std_21f_bal = get_standard_deviations(sort_female_21)
+# print('21f to 35 mean: ', std_21f_bal)
+# std_35f_bal = get_standard_deviations(sort_female_36)
+# print('36f to 51 mean: ', std_35f_bal)
+# std_51f_bal = get_standard_deviations(sort_female_51)
+# print('51f or more mean: ', std_51f_bal)
 
 # norm_dist_m = norm_dist(mean_male_bal, std_male_bal)
-    
+# print(norm_dist_m)

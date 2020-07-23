@@ -33,7 +33,15 @@ age, and male/female.
 
 # Questions
 
-What makes me interested in the results of this data set are 
+I am interested in discovering which groups have the better or worse work-life balance according to this test.
+
+Which brings me to my hypothesis:
+
+1) Males have a work-life balance that is not as good as females. I believe that, in general, males put more energy into work and females split there energy into work-life.
+
+2) Ages 21 to 35 have a worse work-life balance then the other age groups. I believe that due to the stresses of graduating college, starting a career,  beginning a family, and possibly moving to a new city this age range as a harder time managing their work-life balance.
+
+3)  
 
 # Closer Look
 
@@ -48,21 +56,21 @@ max possible score = 169
 
 Figure 1: Comparing the balance scores of males and females
 
-![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf.png)
-
-Figure 2: Comparing 5-number summary of males and females
-
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_ages.png)
 
 Figure 3: Comparing the balance scores of four age ranges
 
-![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_ages.png)
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf.png)
 
-Figure 4: Comparing 5-number summary of four age ranges
+Figure 2: Comparing 5-number summary of males and females
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf_age.png)
 
 Figure 5: Comparing the balance scores of males and females by age
+
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_ages.png)
+
+Figure 4: Comparing 5-number summary of four age ranges
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf_age.png)
 
@@ -70,9 +78,11 @@ Figure 6: Comparing 5-number summary of males and females by age
 
 # Conclusion
 
+
+
 # Photo and Data Credits
 
-The picture in my heading was taken from the main website:
+The picture in my heading was webscraped from the main website:
 
 Link to main website:
 

@@ -1,9 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
-import scipy.stats as stats
 import seaborn as sns
 from random import sample
+import numpy as np
+import scipy.stats as stats
 
 df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
@@ -66,7 +66,7 @@ def sort_age(ages):
 
 def hist_bal_by_age():
 
-    x = [[sort_20, samp_21], [samp_36, samp_51]]
+    x = [[sort_20, sort_21], [sort_36, sort_51]]
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
     fig, ax = plt.subplots(2, 2, figsize=(12, 5))
         
@@ -87,7 +87,7 @@ def hist_bal_by_age():
 
 def box_ages():
 
-    x1 = [sort_20, samp_21, samp_36, samp_51]
+    x1 = [sort_20, sort_21, sort_36, sort_51]
     fig, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less','21 to 35', '36 to 50', '51 or more'])
     ax.set_title('5-number summary of ages')
@@ -97,7 +97,7 @@ def box_ages():
     
 def hist_bal_by_mf():
     
-    x = [sort_males, samp_females]
+    x = [sort_males, sort_females]
     titles = ['males', 'females']
     fig, ax = plt.subplots(2, 1, figsize=(6,5))
 
@@ -115,7 +115,7 @@ def hist_bal_by_mf():
 
 def box_mf():
 
-    x1 = [sort_males, samp_females]
+    x1 = [sort_males, sort_females]
     fig, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2], labels=['males','females'])
     ax.set_title('5-number summary of males and females')
@@ -125,7 +125,7 @@ def box_mf():
 
 def hist_bal_by_mf_age():
     
-    x = [[sort_male_20, samp_male_21, samp_male_36, samp_male_51], [sort_female_20, samp_female_21, samp_female_36, samp_female_51]]
+    x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51], [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
     titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
     fig, ax = plt.subplots(2, 4, figsize=(13, 4))
         
@@ -146,13 +146,52 @@ def hist_bal_by_mf_age():
 
 def box_mf_age():
 
-    x = [sort_male_20, samp_male_21, samp_male_36, samp_male_51, sort_female_20, samp_female_21, samp_female_36, samp_female_51]
+    x = [sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51]
     fig, ax = plt.subplots(figsize=(13,5), sharey=True)
     ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less', 'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
     ax.set_title('5-number summary of males and females by age')
     ax.set_ylabel('Balance Score')
     #plt.savefig('../images/box_mf_age.png')    
     #plt.show()
+
+
+def get_means(lst):
+
+    '''returns means of whole/sample balance scores'''
+
+    return np.mean(lst)
+
+def get_standard_deviations(lst):
+
+    '''returns standard deviation of whole/sample balance scores'''
+
+    return np.std(lst)
+
+def norm_dist(mean, std): #needs attention
+    
+    return stats.norm(loc=mean,scale=std)
+
+def get_norm_coef(): #needs attention
+    mean_male_bal = get_means(sort_males)
+    sqrt_m = np.sqrt(len(sort_males))
+    std = std_male_bal/sqrt_m
+    return mean_male_bal, std
+
+a, b = get_norm_coef()
+norm_males = norm_dist(a, b)
+x2 = np.linspace(a-6*b,a*b,500)
+t_test = stats.ttest_ind(sort_males, equal_var=False)
+
+# Distribution of means plots
+fig, ax = plt.subplots(figsize=(12,8))
+x = np.linspace(2600,3600,2000)
+ax.plot(x,norm_males.pdf(x),color= '#4586AC',label='29')
+
+mean_male_bal = get_means(sort_males)
+mean_female_bal = get_means(sort_females)
+
+std_male_bal = get_standard_deviations(sort_males)
+std_female_bal = get_standard_deviations(sort_females)  
 
 if __name__ == '__main__':
 
@@ -165,40 +204,30 @@ if __name__ == '__main__':
     sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
     
     sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
-    samp_male_21 = sample(sort_male_21,686)
 
     sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
-    samp_male_36 = sample(sort_male_36,686)
 
     sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
-    samp_male_51 = sample(sort_male_51,686)
 
     sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
 
     sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
-    samp_female_21 = sample(sort_female_21,875)
 
     sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
-    samp_female_36 = sample(sort_female_36,875)
 
     sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
-    samp_female_51 = sample(sort_female_51,875)
 
     sort_males = sort_mf('Male', 'males')
 
     sort_females = sort_mf('Female', 'females')
-    samp_females = sample(sort_females,5041)
 
     sort_20 = sort_age('20 or less')
 
     sort_21 = sort_age('21 to 35')
-    samp_21 = sample(sort_21,1561)
 
     sort_36 = sort_age('36 to 50')
-    samp_36 = sample(sort_36,1561)
     
     sort_51 = sort_age('51 or more')
-    samp_51 = sample(sort_51,1561)
 
     # plot_bal_ages = hist_bal_by_age()
     # ages_box = box_ages()
