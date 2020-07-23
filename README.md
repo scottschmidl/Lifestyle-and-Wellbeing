@@ -11,7 +11,7 @@
 7. [Photo and Data Credits](#Photo-and-Data-Credits)
 8. [Extras](#Extras)
 
-# Background And Motivation
+# Background and Motivation
 
 For most of my life I have been into exercising, but for most of my life I was not consistent
 and I never got into lifting weights. It was not until the fall of 2017 were it became
@@ -71,6 +71,7 @@ Figure 5: Comparing 5-number summary of males and females
 The picture in my heading was taken from the main website:
 
 Link to main website:
+
 http://www.authentic-happiness.com/
 
 The data was acquired from:

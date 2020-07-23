@@ -1,6 +1,5 @@
-#this function was used to get the males/females/ages ranges into dictionaries.
+#this function was used to get the males/females/age ranges into dictionaries.
 #it is no longer being used for the sake of condensed code
-
 
 # def group_to_dict(group):
   
