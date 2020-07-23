@@ -108,8 +108,8 @@ def box_ages():
     fig, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less','21 to 35', '36 to 50', '51 or more'])
     ax.set_title('5-number summary of ages')
-    
-    #plt.savefig('../images/box_ages.png')    
+    ax.set_ylabel('Balance Score')
+    plt.savefig('../images/box_ages.png')    
     #plt.show()
     
 def hist_bal_by_mf():
@@ -168,7 +168,7 @@ def box_mf_age():
     ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less', 'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
     ax.set_title('5-number summary of males and females by age')
     ax.set_ylabel('Balance Score')
-    # plt.savefig('../images/box_mf_age.png')    
+    #plt.savefig('../images/box_mf_age.png')    
     #plt.show()
 
 if __name__ == '__main__':
@@ -243,9 +243,9 @@ if __name__ == '__main__':
 
     # norm_dist_m = norm_dist(mean_male_bal, std_male_bal)
     
-    #plot_bal_ages = hist_bal_by_age()
-    # ages_box = box_ages()
+    # plot_bal_ages = hist_bal_by_age()
+    ages_box = box_ages()
     #plot_bal_m_f = hist_bal_by_mf()
     # mf_box = box_mf()
-    #plot_bal_mf_a = hist_bal_by_mf_age()    
+    # plot_bal_mf_a = hist_bal_by_mf_age()    
     # mf_a_box = box_mf_age()
