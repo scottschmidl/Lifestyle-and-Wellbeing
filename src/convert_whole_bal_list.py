@@ -1,5 +1,7 @@
 #extra information: not sure if i will use
 
+# import well-style-cs1.py
+
 # def convert_to_list():
     
 #     '''returns the balance score column as list'''
