@@ -48,23 +48,23 @@ max possible score = 169
 
 Figure 1: Comparing the balance scores of males and females
 
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf.png)
+
+Figure 2: Comparing 5-number summary of males and females
+
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_ages.png)
 
-Figure 2: Comparing the balance scores of four age ranges
-
-![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf_age.png)
-
-Figure 3: Comparing the balance scores of four age ranges amongst males and females
+Figure 3: Comparing the balance scores of four age ranges
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_ages.png)
 
-Figure 4: Comparing 5-number summary of ages
+Figure 4: Comparing 5-number summary of four age ranges
 
-![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf.png)
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf_age.png)
 
-Figure 5: Comparing 5-number summary of males and females
+Figure 5: Comparing the balance scores of males and females by age
 
-![]https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf_age.png
+![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf_age.png)
 
 Figure 6: Comparing 5-number summary of males and females by age
 
