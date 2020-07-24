@@ -154,19 +154,6 @@ def box_mf_age():
     #plt.savefig('../images/box_mf_age.png')    
     #plt.show()
 
-
-def get_means(lst):
-
-    '''returns means of whole/sample balance scores'''
-
-    return np.mean(lst)
-
-def get_standard_deviations(lst):
-
-    '''returns standard deviation of whole/sample balance scores'''
-
-    return np.std(lst)
-
 if __name__ == '__main__':
 
     cleaned_data = clean_data()

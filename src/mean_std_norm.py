@@ -14,12 +14,6 @@
 #     return np.std(lst)
 
 # def norm_dist(mean, std):
-#     norm = stats.norm(mean, std)
-#     samp_norm = norm.rvs(size=1000)
-#     return samp_norm
-    
-# def norm_dist(mean, std): #needs attention
-    
 #     return stats.norm(loc=mean,scale=std)
 
 # def get_norm_coef(): #needs attention
