@@ -25,7 +25,7 @@ This is what guided me to finding the ‘Lifestyle_and_Wellbeing_Data’ on kagg
 # Data
 
 The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey responses, from July
-2015 until February 2020.
+2015 until February 2020. The 'bal_score' column is the sum of the values of the questions for each survey.
 
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
 
