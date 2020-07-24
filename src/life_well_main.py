@@ -62,16 +62,17 @@ def bar_means():
               'm21', 'm36', 'm51', 'f20', 'f21', 'f36', 'f51']
     y = [mean_male_bal, mean_female_bal, mean_20_bal, mean_21_bal, mean_36_bal, mean_51_bal, mean_20m_bal,
          mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal, mean_21f_bal, mean_36f_bal, mean_51f_bal]
+    
     fig, ax = plt.subplots(figsize=(12, 4))
+
     ax.bar(x, y, width=0.3)
-    plt.xticks(rotation=20)
+    plt.xticks(rotation=20, fontsize=14)
     plt.hlines(80, ['male'], ['f51'], linestyles='dashed')
+    ax.set_ylabel('mean', fontsize=14)
+    plt.yticks([0, 20, 50, 80, 110, 140, 170], fontsize=14)
 
-    ax.set_ylabel('mean')
-    ax.set_yticks([0, 20, 50, 80, 110, 140, 170])
-    #plt.savefig('../images/compare_means.png')
-    #plt.show()
-
+    plt.savefig('../images/compare_means.png')
+    plt.show()
 
 def hist_bal_by_age():
     x = [[sort_20, sort_21], [sort_36, sort_51]]
@@ -203,7 +204,7 @@ if __name__ == '__main__':
     mean_36f_bal = get_means(sort_female_20).round(2)
     mean_51f_bal = get_means(sort_female_20).round(2)
 
-    #bar_of_means = bar_means()
+    bar_of_means = bar_means()
     # plot_bal_ages = hist_bal_by_age()
     # ages_box = box_ages()
     # plot_bal_m_f = hist_bal_by_mf()
