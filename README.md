@@ -27,7 +27,7 @@ This is what guided me to finding the ‘Lifestyle_and_Wellbeing_Data’ on kagg
 The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey responses, from July
 2015 until February 2020.
 
-![](/images.columns.png)
+![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
 
 # Hypothesis
 
