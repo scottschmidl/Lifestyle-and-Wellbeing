@@ -39,12 +39,16 @@ Which demographic, amongst three different groups, has the better or worse work-
 
 # Closer Look
 
-With these questions in mind I begin to take a closer look at my data. The first thing I did was look at the columns and inspect for areas with bad data. I added a 'bal_score' column which is the sum of the answers to each question, as they are numerical in nature, and found the min and max possible scores. I, then, isolated the data three times and by the columns: males and females, age ranges, and finally by males and females by ages.
+With these questions in mind I begin to take a closer look at my data. The first thing I did was look at the columns and inspect for areas with bad data. I added a 'bal_score' column which is the sum of the answers to each question, as they are numerical in nature, and found the min and max possible scores.
+
+![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/raw_sample.png)
 
 From min_max_poss.py:
 
 min possible score = 4
 max possible score = 169
+
+ I, then, isolated the data three times and by the columns: males and females, age ranges, and finally by males and females by ages.
 
 Upon completion I moved on to inspect the means of those three areas described below:
 
