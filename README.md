@@ -29,17 +29,13 @@ The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey response
 
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
 
-# Hypothesis
+# Questions
 
 I am interested in discovering which groups have the better or worse work-life balance according to this test.
 
-Which brings me to my hypothesis:
+Which brings me to my question:
 
-1) Males have a work-life balance that is not as good as females. I believe that, in general, males put more energy into work and females split there energy into work-life.
-
-2) Ages 21 to 35 have a worse work-life balance then the other age groups. I believe that due to the stresses of graduating college, starting a career,  beginning a family, and possibly moving to a new city this age range as a harder time managing their work-life balance.
-
-3) If my first two hypothesis are correct, then I deduced that males who are 51 or more had a poor work life balance when compared to others, due to mid life crisis which can happen between 45 and 64 in males and last up to 10 years which is about twice as long as females.
+Which demographic, amongst three different groups, has the better or worse work-life balance when compared to others in their group? 
 
 # Closer Look
 
