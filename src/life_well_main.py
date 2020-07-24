@@ -9,6 +9,7 @@ def clean_data():
     df['bal_score'] = df.sum(axis=1)
     df.columns = map(str.lower, df.columns)
     df.rename(columns={'gender':'male_female'}, inplace=True)
+    df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
     df_fix = df.astype({'daily_stress':'int64'})
     df_fix.replace('Less than 20', '20 or less', inplace=True)
     
@@ -51,6 +52,27 @@ def sort_age(ages):
     balscore_list_age = bal_ages['bal_score'].tolist()
     return balscore_list_age
 
+def get_means(lst):
+    '''returns means of whole/sample balance scores'''
+
+    return np.mean(lst)
+
+def bar_means():
+    x = ['male', 'female', '20' , '21', '36', '51', 'm20',
+              'm21', 'm36', 'm51', 'f20', 'f21', 'f36', 'f51']
+    y = [mean_male_bal, mean_female_bal, mean_20_bal, mean_21_bal, mean_36_bal, mean_51_bal, mean_20m_bal,
+         mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal, mean_21f_bal, mean_36f_bal, mean_51f_bal]
+    fig, ax = plt.subplots(figsize=(12, 4))
+    ax.bar(x, y, width=0.3)
+    plt.xticks(rotation=20)
+    plt.hlines(80, ['male'], ['f51'], linestyles='dashed')
+
+    ax.set_ylabel('mean')
+    ax.set_yticks([0, 20, 50, 80, 110, 140, 170])
+    #plt.savefig('../images/compare_means.png')
+    #plt.show()
+
+
 def hist_bal_by_age():
     x = [[sort_20, sort_21], [sort_36, sort_51]]
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
@@ -77,7 +99,7 @@ def box_ages():
     ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less', '21 to 35', '36 to 50', '51 or more'])
     ax.set_title('5-number summary of ages')
     ax.set_ylabel('Balance Score')
-    plt.savefig('../images/box_ages.png')    
+    #plt.savefig('../images/box_ages.png')    
     #plt.show()
     
 def hist_bal_by_mf():    
@@ -91,7 +113,7 @@ def hist_bal_by_mf():
         ax[i].set_xlabel('Balance Score')
         ax[i].set_ylabel('Kernel Density Estimation')
         ax[i].set_xlim(4, 170)
-        ax[i].set_xticks([20,40,60,80,100,120,140,160])
+        ax[i].set_xticks([20, 40, 60, 80, 100, 120, 140, 160])
 
     plt.tight_layout()
     #plt.savefig('../images/compare_balscores_mf.png')
@@ -138,11 +160,6 @@ def box_mf_age():
 if __name__ == '__main__':
 
     df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
-    #print('BEFORE CLEANING:\n') 
-    #print(df.info())
-    #print(df.describe())
-    #print(df.head())
-    df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
 
     cleaned_data = clean_data()
 
@@ -150,34 +167,43 @@ if __name__ == '__main__':
     mf_group = cleaned_data.groupby('male_female')
     ages_group = cleaned_data.groupby('age')
 
-    sort_male_20 = sort_mf_age('Male', '20 or less', 'males')
-    
+    sort_male_20 = sort_mf_age('Male', '20 or less', 'males')    
     sort_male_21 = sort_mf_age('Male', '21 to 35', 'males')
-
     sort_male_36 = sort_mf_age('Male', '36 to 50', 'males')
-
     sort_male_51 = sort_mf_age('Male', '51 or more', 'males')
 
     sort_female_20 = sort_mf_age('Female', '20 or less', 'females')
-
     sort_female_21 = sort_mf_age('Female', '21 to 35', 'females')
-
     sort_female_36 = sort_mf_age('Female', '36 to 50', 'females')
-
     sort_female_51 = sort_mf_age('Female', '51 or more', 'females')
 
     sort_males = sort_mf('Male', 'males')
-
     sort_females = sort_mf('Female', 'females')
 
     sort_20 = sort_age('20 or less')
-
     sort_21 = sort_age('21 to 35')
-
-    sort_36 = sort_age('36 to 50')
-    
+    sort_36 = sort_age('36 to 50')    
     sort_51 = sort_age('51 or more')
 
+    mean_male_bal = get_means(sort_males).round(2)
+    mean_female_bal = get_means(sort_females).round(2)
+
+    mean_20_bal = get_means(sort_20).round(2)
+    mean_21_bal = get_means(sort_21).round(2)
+    mean_36_bal = get_means(sort_36).round(2)
+    mean_51_bal = get_means(sort_51).round(2)
+
+    mean_20m_bal = get_means(sort_male_20).round(2)
+    mean_21m_bal = get_means(sort_male_21).round(2)
+    mean_36m_bal = get_means(sort_male_20).round(2)
+    mean_51m_bal = get_means(sort_male_20).round(2)
+
+    mean_20f_bal = get_means(sort_female_20).round(2)
+    mean_21f_bal = get_means(sort_female_21).round(2)
+    mean_36f_bal = get_means(sort_female_20).round(2)
+    mean_51f_bal = get_means(sort_female_20).round(2)
+
+    #bar_of_means = bar_means()
     # plot_bal_ages = hist_bal_by_age()
     # ages_box = box_ages()
     # plot_bal_m_f = hist_bal_by_mf()

@@ -31,6 +31,7 @@
 # fig, ax = plt.subplots(figsize=(12,8))
 # x = np.linspace(2600,3600,2000)
 # ax.plot(x,norm_males.pdf(x),color= '#4586AC',label='29')
+
 # mean_male_bal = get_means(sort_males)
 # print('males mean: ', mean_male_bal)
 # mean_female_bal = get_means(sort_females)
