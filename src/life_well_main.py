@@ -167,32 +167,6 @@ def get_standard_deviations(lst):
 
     return np.std(lst)
 
-def norm_dist(mean, std): #needs attention
-    
-    return stats.norm(loc=mean,scale=std)
-
-def get_norm_coef(): #needs attention
-    mean_male_bal = get_means(sort_males)
-    sqrt_m = np.sqrt(len(sort_males))
-    std = std_male_bal/sqrt_m
-    return mean_male_bal, std
-
-a, b = get_norm_coef()
-norm_males = norm_dist(a, b)
-x2 = np.linspace(a-6*b,a*b,500)
-t_test = stats.ttest_ind(sort_males, equal_var=False)
-
-# Distribution of means plots
-fig, ax = plt.subplots(figsize=(12,8))
-x = np.linspace(2600,3600,2000)
-ax.plot(x,norm_males.pdf(x),color= '#4586AC',label='29')
-
-mean_male_bal = get_means(sort_males)
-mean_female_bal = get_means(sort_females)
-
-std_male_bal = get_standard_deviations(sort_males)
-std_female_bal = get_standard_deviations(sort_females)  
-
 if __name__ == '__main__':
 
     cleaned_data = clean_data()

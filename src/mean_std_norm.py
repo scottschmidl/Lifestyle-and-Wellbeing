@@ -1,23 +1,42 @@
 #might place mean, std, and norm data here
-import well_life_cs1
+#import well_life_cs1
 
-def get_means(lst):
+# def get_means(lst):
 
-    '''returns means of whole/sample balance scores'''
+#     '''returns means of whole/sample balance scores'''
 
-    return np.mean(lst)
+#     return np.mean(lst)
 
-def get_standard_deviations(lst):
+# def get_standard_deviations(lst):
 
-    '''returns standard deviation of whole/sample balance scores'''
+#     '''returns standard deviation of whole/sample balance scores'''
 
-    return np.std(lst)
+#     return np.std(lst)
 
-def norm_dist(mean, std):
-    norm = stats.norm(mean, std)
-    samp_norm = norm.rvs(size=1000)
-    return samp_norm
+# def norm_dist(mean, std):
+#     norm = stats.norm(mean, std)
+#     samp_norm = norm.rvs(size=1000)
+#     return samp_norm
     
+# def norm_dist(mean, std): #needs attention
+    
+#     return stats.norm(loc=mean,scale=std)
+
+# def get_norm_coef(): #needs attention
+#     mean_male_bal = get_means(sort_males)
+#     sqrt_m = np.sqrt(len(sort_males))
+#     std = std_male_bal/sqrt_m
+#     return mean_male_bal, std
+
+# a, b = get_norm_coef()
+# norm_males = norm_dist(a, b)
+# x2 = np.linspace(a-6*b,a*b,500)
+# t_test = stats.ttest_ind(sort_males, equal_var=False)
+
+# # Distribution of means plots
+# fig, ax = plt.subplots(figsize=(12,8))
+# x = np.linspace(2600,3600,2000)
+# ax.plot(x,norm_males.pdf(x),color= '#4586AC',label='29')
 # mean_male_bal = get_means(sort_males)
 # print('males mean: ', mean_male_bal)
 # mean_female_bal = get_means(sort_females)

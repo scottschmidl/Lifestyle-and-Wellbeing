@@ -31,7 +31,7 @@ BMI range, to do lists completed, flow, daily steps, life vision, sleep hours, l
 days, daily shouting, sufficient income, personal awards, time for passion, daily meditation,
 age, and male/female.
 
-# Questions
+# Hypothesis
 
 I am interested in discovering which groups have the better or worse work-life balance according to this test.
 
@@ -41,16 +41,41 @@ Which brings me to my hypothesis:
 
 2) Ages 21 to 35 have a worse work-life balance then the other age groups. I believe that due to the stresses of graduating college, starting a career,  beginning a family, and possibly moving to a new city this age range as a harder time managing their work-life balance.
 
-3)  
+3) If my first two hypothesis are correct, then I deduced that males who are 51 or more had a poor work life balance when compared to others, due to mid life crisis which can happen between 45 and 64 in males and last up to 10 years which is about twice as long as females.
 
 # Closer Look
+
+With these questions in mind I begin to take a closer look at my data. The first thing I did was look at the columns and inspect for areas with bad data. I added a 'bal_score' column which is the sum of the answers to each question, as they are numerical in nature, and found the min and max possible scores. I, then, isolated the data three times and by the columns: males and females, age ranges, and finally by males and females by ages.
 
 From min_max_poss.py:
 
 min possible score = 4
 max possible score = 169
 
+Upon completion I moved on to inspect the means of those three areas described below:
+
+Means to note: 'males' are lower than females, '21 to 35' is lower than the others, and 21m to 35 is lower than the others. The latter is not what I initially expected.
+
+males:  80.1362824836342
+females:  83.11200414830179
+20 or less:  81.12876361306854
+21 or 35:  79.49387505104124
+36 or 50:  83.28048780487805
+51 or more:  85.04985119047619
+20m or less:  79.3731778425656
+21m to 35:  77.29477611940298
+36m to 51:  82.14328582145536
+51m or more:  84.62414578587699
+20f or less:  82.50514285714286
+21f to 35:  81.20588235294117
+36f to 51:  83.94681318681319
+51f or more:  85.25635359116022
+
 # Visualization
+
+The above results lead me to the below distributions. All of the results below are around 80 +- 5 over and 3 under. It appeared that this had the potential to be normally distributed, since 80 is about half. 
+
+As I was unsure of the exact distribution I decided to plot against a kernel density estimation. KDE is a non-parametric estimate of the PDF. Non-parametrized means that the data distrubtion is unknown or known but with uncertain parameters. As you can see from the below graphs the data is nearly normal distributed with some quite large standard deviations.
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf.png)
 
@@ -63,6 +88,8 @@ Figure 2: Comparing the balance scores of four age ranges
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/compare_balscores_mf_age.png)
 
 Figure 3: Comparing the balance scores of males and females by age
+
+The above distributions, while nice, left me wanting a slightly better way to visualize what was actually gone on with the work-life balance scores. I made the below box plots to extract the min, first quartile, median, third quartile, and max values easily visible.
 
 ![](https://github.com/scottschmidl/capstone-1/blob/master/images/box_mf.png)
 
@@ -78,7 +105,11 @@ Figure 6: Comparing 5-number summary of males and females by age
 
 # Conclusion
 
+On figure 4 one can see that the females have a plot that is more nestled and with a higher mean. This leads me to conclude that more of their values are around the mean with stronger values in the north than in the south. If you compare this to the males who are more spread out to the south when compared to the females, then to north, one can conclude that the females have a much better handle on their work-life balance. These results lead me to not rejecting my eariler hypothesis.
 
+On figure 5 one can see that not only is the mean lower on ages '21 to 35', but their plot also has less values to the north of the mean. Ages '51 or more' have the highest mean. I am compeled to conclude that ages '21 to 35' have the hardest time managing their work-balance, and therefore I can not reject my earlier hypothesis.
+
+On figure 6 one can see that 'males, 21 to 35' have the lowest mean and overall lower values with 'males 36 to 50' and 'females 51 or more' leading the pack. These results are not what I expected and compele me to reject my earlier hypothesis and now I am interested to know why this is the case.
 
 # Photo and Data Credits
 
