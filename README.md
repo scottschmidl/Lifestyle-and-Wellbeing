@@ -56,6 +56,8 @@ Upon completion I moved on to inspect the means of those three areas described b
 
 Means to note: 'males' are lower than females, '21 to 35' is lower than the others, and 21m to 35 is lower than the others. The latter is not what I initially expected.
 
+![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/compare_means.png)
+
 # Visualization
 
 The above results lead me to the below distributions. All of the results below are around 80 +- 5 over and 3 under. It appeared that this had the potential to be normally distributed, since 80 is about half. 
