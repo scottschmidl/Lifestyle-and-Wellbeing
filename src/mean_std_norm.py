@@ -1,5 +1,5 @@
 #might place mean, std, and norm data here
-#import well_life_cs1
+#import well_life_main
 
 # def get_means(lst):
 

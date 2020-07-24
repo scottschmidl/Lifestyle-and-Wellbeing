@@ -1,6 +1,5 @@
 #extra information: not sure if i will use
-
-# import well-style-cs1.py
+# import life_well_main
 
 # def convert_to_list():
     

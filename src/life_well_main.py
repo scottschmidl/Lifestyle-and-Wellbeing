@@ -5,17 +5,7 @@ from random import sample
 import numpy as np
 import scipy.stats as stats
 
-df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
-
-#print('BEFORE CLEANING:\n') 
-#print(df.info())
-#print(df.describe())
-#print(df.head())
-
-df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
-
 def clean_data():
-
     df['bal_score'] = df.sum(axis=1)
     df.columns = map(str.lower, df.columns)
     df.rename(columns={'gender':'male_female'}, inplace=True)
@@ -25,7 +15,6 @@ def clean_data():
     return df_fix
     
 def sort_mf_age(mf, ages, m_f):
-
     '''mf = group to get out of Male or Female - str
        ages = age range to get our of 20 or less, 21 to 35, 36 to 50, 51 or more - str
        m_f = rename male_female column as either males or females - str
@@ -40,7 +29,6 @@ def sort_mf_age(mf, ages, m_f):
     return mf_ages_scores
 
 def sort_mf(mf, m_f):
-
     '''mf = group to get out of Male or Female - str
        m_f = rename male_female column as either males or females - str
        
@@ -53,7 +41,6 @@ def sort_mf(mf, m_f):
     return mf_bal_scores
 
 def sort_age(ages):
-
     '''ages = group to get out of the four ages - str
         
         returns - list of balance scores for the four age ranges '''
@@ -65,7 +52,6 @@ def sort_age(ages):
     return balscore_list_age
 
 def hist_bal_by_age():
-
     x = [[sort_20, sort_21], [sort_36, sort_51]]
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
     fig, ax = plt.subplots(2, 2, figsize=(12, 5))
@@ -79,24 +65,22 @@ def hist_bal_by_age():
             ax[i][j].set_xlabel('Balance Score')
             ax[i][j].set_ylabel('Kernel Density Estimation')
             ax[i][j].set_xlim(4, 170)
-            ax[i][j].set_xticks([20,40,60,80,100,120,140,160])
+            ax[i][j].set_xticks([20, 40, 60, 80, 100, 120, 140, 160])
 
     plt.tight_layout()
     #plt.savefig('../images/compare_balscores_ages.png')
     #plt.show()
 
 def box_ages():
-
     x1 = [sort_20, sort_21, sort_36, sort_51]
     fig, ax = plt.subplots(figsize=(6,5), sharey=True)
-    ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less','21 to 35', '36 to 50', '51 or more'])
+    ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less', '21 to 35', '36 to 50', '51 or more'])
     ax.set_title('5-number summary of ages')
     ax.set_ylabel('Balance Score')
     plt.savefig('../images/box_ages.png')    
     #plt.show()
     
-def hist_bal_by_mf():
-    
+def hist_bal_by_mf():    
     x = [sort_males, sort_females]
     titles = ['males', 'females']
     fig, ax = plt.subplots(2, 1, figsize=(6,5))
@@ -114,7 +98,6 @@ def hist_bal_by_mf():
     #plt.show()
 
 def box_mf():
-
     x1 = [sort_males, sort_females]
     fig, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2], labels=['males','females'])
@@ -123,8 +106,7 @@ def box_mf():
     #plt.savefig('../images/box_mf.png')    
     #plt.show()
 
-def hist_bal_by_mf_age():
-    
+def hist_bal_by_mf_age():    
     x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51], [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
     titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
     fig, ax = plt.subplots(2, 4, figsize=(13, 4))
@@ -145,7 +127,6 @@ def hist_bal_by_mf_age():
     #plt.show()
 
 def box_mf_age():
-
     x = [sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51]
     fig, ax = plt.subplots(figsize=(13,5), sharey=True)
     ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less', 'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
@@ -155,6 +136,13 @@ def box_mf_age():
     #plt.show()
 
 if __name__ == '__main__':
+
+    df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
+    #print('BEFORE CLEANING:\n') 
+    #print(df.info())
+    #print(df.describe())
+    #print(df.head())
+    df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
 
     cleaned_data = clean_data()
 
