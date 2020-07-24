@@ -204,7 +204,7 @@ if __name__ == '__main__':
     mean_36f_bal = get_means(sort_female_20).round(2)
     mean_51f_bal = get_means(sort_female_20).round(2)
 
-    bar_of_means = bar_means()
+    # bar_of_means = bar_means()
     # plot_bal_ages = hist_bal_by_age()
     # ages_box = box_ages()
     # plot_bal_m_f = hist_bal_by_mf()

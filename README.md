@@ -25,11 +25,9 @@ This is what guided me to finding the ‘Lifestyle_and_Wellbeing_Data’ on kagg
 # Data
 
 The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey responses, from July
-2015 until February 2020, covering the following 23 features: timestamp, fruits and veggies,
-daily stress, new places visited, core circle, supporting others, achievements, donations,
-BMI range, to do lists completed, flow, daily steps, life vision, sleep hours, lost vacation
-days, daily shouting, sufficient income, personal awards, time for passion, daily meditation,
-age, and male/female.
+2015 until February 2020.
+
+![](/images.columns.png)
 
 # Hypothesis
 
