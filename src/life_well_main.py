@@ -163,6 +163,7 @@ if __name__ == '__main__':
     df = pd.read_csv('../data/wellbeing-lifestyle-cs1.csv')
 
     cleaned_data = clean_data()
+    print(cleaned_data)
 
     mf_age_group = cleaned_data.groupby(['male_female', 'age'])
     mf_group = cleaned_data.groupby('male_female')
