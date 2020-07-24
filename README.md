@@ -56,21 +56,6 @@ Upon completion I moved on to inspect the means of those three areas described b
 
 Means to note: 'males' are lower than females, '21 to 35' is lower than the others, and 21m to 35 is lower than the others. The latter is not what I initially expected.
 
-males:  80.1362824836342
-females:  83.11200414830179
-20 or less:  81.12876361306854
-21 or 35:  79.49387505104124
-36 or 50:  83.28048780487805
-51 or more:  85.04985119047619
-20m or less:  79.3731778425656
-21m to 35:  77.29477611940298
-36m to 51:  82.14328582145536
-51m or more:  84.62414578587699
-20f or less:  82.50514285714286
-21f to 35:  81.20588235294117
-36f to 51:  83.94681318681319
-51f or more:  85.25635359116022
-
 # Visualization
 
 The above results lead me to the below distributions. All of the results below are around 80 +- 5 over and 3 under. It appeared that this had the potential to be normally distributed, since 80 is about half. 
