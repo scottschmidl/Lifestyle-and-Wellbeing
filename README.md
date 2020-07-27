@@ -37,6 +37,8 @@ Raw Data:
 |   7/7/15 |              3 |            3 |             10 |           3 |                10 |              7 | ... |                 1 |               5 |                2 |                0 | 51 or more |      Female |        80 |
 |   7/7/15 |              5 |            1 |              3 |           3 |                10 |              4 | ... |                 2 |               8 |                1 |                5 | 51 or more |      Female |        66 |
 
+Table Info:
+
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
 
 # Questions
