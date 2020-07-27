@@ -29,14 +29,14 @@ The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey response
 
 Raw Data:
 
-|timestamp | fruits_veggies | daily_stress | places_visited | core_circle | supporting_others | social_network | ... | sufficient_income | personal_awards | time_for_passion | daily_meditation |        age | male_female | bal_score |
-|      --: |            --: |          --: |            --: |         --: |               --: |           --:  | --: |           --:     |       --:       |             --:  |            --:   |         --:|     --:     |     --:   | 
-|   7/7/15 |              3 |            2 |              2 |           5 |                 0 |              5 | ... |                 1 |               4 |                0 |                5 |   36 to 50 |      Female |        60 |
-|   7/7/15 |              2 |            3 |              4 |           3 |                 8 |             10 | ... |                 2 |               3 |                2 |                6 |   36 to 50 |      Female |        78 |
-|   7/7/15 |              2 |            3 |              3 |           4 |                 4 |             10 | ... |                 2 |               4 |                8 |                3 |   36 to 50 |      Female |        80 |
-|   7/7/15 |              3 |            3 |             10 |           3 |                10 |              7 | ... |                 1 |               5 |                2 |                0 | 51 or more |      Female |        80 |
-|   7/7/15 |              5 |            1 |              3 |           3 |                10 |              4 | ... |                 2 |               8 |                1 |                5 | 51 or more |      Female |        66 |
-
+|timestamp | fruits_veggies | daily_stress | places_visited | core_circle | supporting_others | social_network | achievment | donation | bmi_range | todo_complete | flow | daily_steps | live_vision | sleep_hours | lost_vacation | daily_shouting | sufficient_income | personal_awards | time_for_passion | daily_meditation |        age | male_female | bal_score |
+|      --: |            --: |          --: |            --: |         --: |               --: |           --:  |        --: |       --:|       --: |       --:     | --:  |    --:      |    --:      |      --:    |       --:     |          --:   |             --:   |         --:     |       --:        |             --:  |      --:   |          --:|   --:     | 
+|   7/7/15 |              3 |            2 |              2 |           5 |                 0 |              5 |          2 |        0 |         1 |            6  |  4   |         5   |          0  |         7   |            5  |              5 |                 1 |               4 |                0 |                5 |   36 to 50 |      Female |        60 |
+|   7/7/15 |              2 |            3 |              4 |           3 |                 8 |             10 |          5 |        2 |         2 |            5  |  2   |         5   |          5  |         8   |            2  |              2 |                 2 |               3 |                2 |                6 |   36 to 50 |      Female |        78 |
+|   7/7/15 |              2 |            3 |              3 |           4 |                 4 |             10 |          3 |        2 |         2 |            2  |  2   |         4   |          5  |         8   |           10  |              2 |                 2 |               4 |                8 |                3 |   36 to 50 |      Female |        80 |
+|   7/7/15 |              3 |            3 |             10 |           3 |                10 |              7 |          2 |        5 |         2 |            3  |  5   |         5   |          0  |         5   |            7  |              5 |                 1 |               5 |                2 |                0 | 51 or more |      Female |        80 |
+|   7/7/15 |              5 |            1 |              3 |           3 |                10 |              4 |          2 |        4 |         2 |            6  |  0   |         5   |          0  |         7   |            0  |              0 |                 2 |               8 |                1 |                5 | 51 or more |      Female |        66 |
+                                                                                                                
 Table Info:
 
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
