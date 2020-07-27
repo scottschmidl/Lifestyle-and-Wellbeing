@@ -30,6 +30,7 @@ The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey response
 Raw Data:
 
 fruits_veggies | daily_stress | places_visited | core_circle | supporting_others | social_network | ... | sufficient_income | personal_awards | time_for_passion | daily_meditation | age | male_female | bal_score
+-------------:   -----------:   -------------:   ----------:   ----------------:   -------------:   --:   ----------------:   --------------:   ---------------:   ---------------:   --:   ----------:   --------:
             3             2               2            5                  0               5         ...                  1                4                 0                 5    36 to 50       Female         60
             2             3               4            3                  8              10         ...                  2                3                 2                 6    36 to 50       Female         78
             2             3               3            4                  4              10         ...                  2                4                 8                 3    36 to 50       Female         80
