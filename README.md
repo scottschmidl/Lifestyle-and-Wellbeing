@@ -29,19 +29,21 @@ The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey response
 
 Raw Data:
 
-fruits_veggies | daily_stress | places_visited | core_circle | supporting_others | social_network | ... | sufficient_income | personal_awards | time_for_passion | daily_meditation | age | male_female | bal_score
-           --:            --:              --:           --:                 --:              --:   --:                 --:               --:                --:                --:   --:           --:         --:
-            3             2               2            5                  0               5         ...                  1                4                 0                 5    36 to 50       Female         60
-            2             3               4            3                  8              10         ...                  2                3                 2                 6    36 to 50       Female         78
-            2             3               3            4                  4              10         ...                  2                4                 8                 3    36 to 50       Female         80
-            3             3              10            3                 10               7         ...                  1                5                 2                 0  51 or more       Female         80
-            5             1               3            3                 10               4         ...                  2                8                 1                 5  51 or more       Female         66
-          ...             ...           ...          ...                ...             ...         ...                ...              ...               ...               ...         ...          ...        ...        ...
-            3             4              10            8                 10               8         ...                  1               10                 6                 7    21 to 35       Female        100
-            3             3               6            5                  2               5         ...                  2                3                 0                 2    36 to 50       Female         44
-            4             4               7            5                  3               3         ...                  2                6                 3                 5    36 to 50       Female         72
-            3             3              10            4                  8              10         ...                  1               10                 1                10    21 to 35       Female         87
-            2             2               6            1                  6               1         ...                  2                3                 2                10  51 or more       Female         63
+                timestamp  fruits_veggies  daily_stress  places_visited  core_circle  supporting_others  social_network  ...  sufficient_income  personal_awards  time_for_passion  daily_meditation         age  male_female  bal_score
+0                  7/7/15               3             2               2            5                  0               5  ...                  1                4                 0                 5    36 to 50       Female         60
+1                  7/7/15               2             3               4            3                  8              10  ...                  2                3                 2                 6    36 to 50       Female         78
+2                  7/7/15               2             3               3            4                  4              10  ...                  2                4                 8                 3    36 to 50       Female         80
+3                  7/7/15               3             3              10            3                 10               7  ...                  1                5                 2                 0  51 or more       Female         80
+4                  7/7/15               5             1               3            3                 10               4  ...                  2                8                 1                 5  51 or more       Female         66
+...                   ...             ...           ...             ...          ...                ...             ...  ...                ...              ...               ...               ...         ...          ...        ...
+12751  2/23/2020 22:03:56               3             4              10            8                 10               8  ...                  1               10                 6                 7    21 to 35       Female        100
+12752   2/24/2020 2:44:30               3             3               6            5                  2               5  ...                  2                3                 0                 2    36 to 50       Female         44
+12753  2/24/2020 10:35:02               4             4               7            5                  3               3  ...                  2                6                 3                 5    36 to 50       Female         72
+12754  2/24/2020 12:54:10               3             3              10            4                  8              10  ...                  1               10                 1                10    21 to 35       Female         87
+12755  2/24/2020 12:55:21               2             2               6            1                  6               1  ...                  2                3                 2                10  51 or more       Female         63
+
+[12755 rows x 24 columns]
+
 
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
 
