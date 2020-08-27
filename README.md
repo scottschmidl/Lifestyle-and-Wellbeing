@@ -53,8 +53,6 @@ Which demographic, amongst three different groups, has the better or worse work-
 
 With these questions in mind I begin to take a closer look at my data. The first thing I did was look at the columns and inspect for areas with bad data. I added a 'bal_score' column which is the sum of the answers to each question, as they are numerical in nature, and found the min and max possible scores.
 
-'raw sample data to follow'
-
 From min_max_poss.py:
 
 min possible score = 4
