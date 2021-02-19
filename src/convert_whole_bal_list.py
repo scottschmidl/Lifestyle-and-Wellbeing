@@ -2,7 +2,7 @@
 from life_well_main import cleaned_data
 
 def convert_to_list(df):
-    
+
     '''returns the balance score column as list'''
 
     return df['bal_score'].tolist()

@@ -1,16 +1,22 @@
 #this function was used to get the males/females/age ranges into dictionaries.
 #it is no longer being used for the sake of condensed code
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from random import sample
+import numpy as np
+import scipy.stats as stats
 from life_well_main import *
 
 def group_to_dict(group):
-  
+
     '''returns dictionary with group as the key and a subset of the
-       balance score list as the value'''
+        balance score list as the value'''
 
     if group == 'Male':
 
         male_dict = {}
-        
+
         for m in mal_bal.iloc[:, 22:24]:
             male_dict[m] = male_balacc_list
             return mal_dict
@@ -18,11 +24,11 @@ def group_to_dict(group):
     elif group == 'Female':
 
         female_dict = {}
-        
+
         for f in femal_bal.iloc[:, 22:24]:
             female_dict[f] = female_balacc_list
             return femal_dict
-            
+
     elif group == '20 or less':
         dict_20 = {}
         for a in bal_20.iloc[0:, 0:1]:
@@ -49,10 +55,10 @@ def group_to_dict(group):
 
     return 'not a valid group'
 
-dict_20 = group_to_dict('20 or less')    
+dict_20 = group_to_dict('20 or less')
 
-dict_21 = group_to_dict('21 to 35')    
+dict_21 = group_to_dict('21 to 35')
 
-dict_36 = group_to_dict('36 to 50')    
+dict_36 = group_to_dict('36 to 50')
 
-dict_51 = group_to_dict('51 or more') 
+dict_51 = group_to_dict('51 or more')
