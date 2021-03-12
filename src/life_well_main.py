@@ -1,11 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from random import sample
-import numpy as np
-import scipy.stats as stats
-from mean_std_norm import get_means
 
+## CLEAN DATA AND GET CLEANED GROUPS
 def clean_data(df):
 
     '''
@@ -22,6 +17,20 @@ def clean_data(df):
 
     return df_fix
 
+def cleaned_groups():
+
+    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+
+    cleaned_data = clean_data(df)
+
+    mf_age_group = cleaned_data.groupby(['male_female', 'age'])
+    mf_group = cleaned_data.groupby('male_female')
+    ages_group = cleaned_data.groupby('age')
+
+    return mf_age_group, mf_group, ages_group
+
+
+## SORT MALE, FEMALE BY AGE
 def sort_mf_age(mf, ages, m_f, mfa_group):
 
     '''
@@ -39,6 +48,21 @@ def sort_mf_age(mf, ages, m_f, mfa_group):
 
     return mf_ages_scores
 
+def sort_malefemale_age(mfa_group):
+
+    sort_male_20 = sort_mf_age('Male', '20 or less', 'males', mfa_group)
+    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males', mfa_group)
+    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males', mfa_group)
+    sort_male_51 = sort_mf_age('Male', '51 or more', 'males', mfa_group)
+
+    sort_female_20 = sort_mf_age('Female', '20 or less', 'females', mfa_group)
+    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females', mfa_group)
+    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females', mfa_group)
+    sort_female_51 = sort_mf_age('Female', '51 or more', 'females', mfa_group)
+
+    return sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51
+
+## SORT MALE, FEMALE
 def sort_mf(mf, m_f, mf_group):
 
     '''
@@ -54,6 +78,14 @@ def sort_mf(mf, m_f, mf_group):
     mf_bal_scores = mf_bal['bal_score'].tolist()
     return mf_bal_scores
 
+def sort_male_female(mf_group):
+
+    sort_males = sort_mf('Male', 'males', mf_group)
+    sort_females = sort_mf('Female', 'females', mf_group)
+
+    return sort_males, sort_females
+
+## SORT AGE
 def sort_age(ages, ages_group):
 
     '''
@@ -68,39 +100,6 @@ def sort_age(ages, ages_group):
     balscore_list_age = bal_ages['bal_score'].tolist()
     return balscore_list_age
 
-def cleaned_groups():
-
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
-
-    cleaned_data = clean_data(df)
-
-    mf_age_group = cleaned_data.groupby(['male_female', 'age'])
-    mf_group = cleaned_data.groupby('male_female')
-    ages_group = cleaned_data.groupby('age')
-
-    return mf_age_group, mf_group, ages_group
-
-def sort_malefemale_age(mfa_group):
-
-    sort_male_20 = sort_mf_age('Male', '20 or less', 'males', mfa_group)
-    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males', mfa_group)
-    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males', mfa_group)
-    sort_male_51 = sort_mf_age('Male', '51 or more', 'males', mfa_group)
-
-    sort_female_20 = sort_mf_age('Female', '20 or less', 'females', mfa_group)
-    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females', mfa_group)
-    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females', mfa_group)
-    sort_female_51 = sort_mf_age('Female', '51 or more', 'females', mfa_group)
-
-    return sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51
-
-def sort_male_female(mf_group):
-
-    sort_males = sort_mf('Male', 'males', mf_group)
-    sort_females = sort_mf('Female', 'females', mf_group)
-
-    return sort_males, sort_females
-
 def sort_ages(ages_group):
 
     sort_20 = sort_age('20 or less', ages_group)
@@ -110,47 +109,16 @@ def sort_ages(ages_group):
 
     return sort_20, sort_21, sort_36, sort_51
 
-def male_female_bal(sorted_gender):
-
-    for g in sorted_gender:
-        if g == sort_males: mean_male_bal = get_means(g).round(2)
-        else: mean_female_bal = get_means(g).round(2)
-
-    return mean_male_bal, mean_female_bal
-
-def mean_age_bal(sorted_age):
-
-    for a in sorted_age:
-
-        if a == sort_20: mean_20_bal = get_means(a).round(2)
-        elif a == sort_21: mean_21_bal = get_means(a).round(2)
-        elif a == sort_36: mean_36_bal = get_means(a).round(2)
-        else: mean_51_bal = get_means(a).round(2)
-
-    return mean_20_bal, mean_21_bal, mean_36_bal, mean_51_bal
-
 def main():
 
+    #CLEAN
     mf_age_group, mf_group, ages_group = cleaned_groups()
 
-    sort_male_20, sort_male_21, sort_male_36, sort_male_51 = sort_malefemale_age(mf_age_group)[:4]
-    sort_female_20, sort_female_21, sort_female_36, sort_female_51 = sort_malefemale_age(mf_age_group)[4:]
-    sort_males, sort_females = sort_male_female(mf_group)
-    sort_20, sort_21, sort_36, sort_51 = sort_ages(ages_group)
+    #SORT
+    sort_mf_age = sort_malefemale_age(mf_age_group)
+    sort_mf = sort_male_female(mf_group)
+    sort_age = sort_ages(ages_group)
 
-    male_female_bal([sort_males, sort_females])
-    mean_age_bal([sort_20, sort_21, sort_36, sort_51])
-
-
-    mean_20m_bal = get_means(sort_male_20).round(2)
-    mean_21m_bal = get_means(sort_male_21).round(2)
-    mean_36m_bal = get_means(sort_male_36).round(2)
-    mean_51m_bal = get_means(sort_male_51).round(2)
-
-    mean_20f_bal = get_means(sort_female_20).round(2)
-    mean_21f_bal = get_means(sort_female_21).round(2)
-    mean_36f_bal = get_means(sort_female_36).round(2)
-    mean_51f_bal = get_means(sort_female_51).round(2)
 
 if __name__ == '__main__':
     main()
