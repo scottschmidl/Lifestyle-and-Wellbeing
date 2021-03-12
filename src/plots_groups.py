@@ -3,6 +3,7 @@ from life_well_main import clean_sort
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
+import warnings
 
 def bar_means(y):
     x = ['male', 'female', '20' , '21', '36', '51', 'm20',
@@ -16,7 +17,7 @@ def bar_means(y):
     ax.set_ylabel('mean', fontsize=14)
     plt.yticks([0, 20, 50, 80, 110, 140, 170], fontsize=14)
 
-    plt.savefig('../images/compare_means.png')
+    #plt.savefig('images/compare_means.png')
     plt.show()
 
 def hist_bal_by_age(x):
@@ -37,7 +38,7 @@ def hist_bal_by_age(x):
 
     plt.tight_layout()
     #plt.savefig('../images/compare_balscores_ages.png')
-    # plt.show()
+    plt.show()
 
 def box_ages(x1):
 
@@ -46,7 +47,7 @@ def box_ages(x1):
     ax.set_title('5-number summary of ages')
     ax.set_ylabel('Balance Score')
     #plt.savefig('../images/box_ages.png')
-    #plt.show()
+    plt.show()
 
 def hist_bal_by_mf(x):
 
@@ -63,7 +64,7 @@ def hist_bal_by_mf(x):
 
     plt.tight_layout()
     #plt.savefig('../images/compare_balscores_mf.png')
-    # plt.show()
+    plt.show()
 
 def box_mf(x1):
 
@@ -72,7 +73,7 @@ def box_mf(x1):
     ax.set_title('5-number summary of males and females')
     ax.set_ylabel('Balance Score')
     #plt.savefig('../images/box_mf.png')
-    #plt.show()
+    plt.show()
 
 def hist_bal_by_mf_age(x):
 
@@ -93,7 +94,7 @@ def hist_bal_by_mf_age(x):
 
     plt.tight_layout()
     #plt.savefig('../images/compare_balscores_mf_age.png')
-    #plt.show()
+    plt.show()
 
 def box_mf_age(x):
 
@@ -103,7 +104,7 @@ def box_mf_age(x):
     ax.set_title('5-number summary of males and females by age')
     ax.set_ylabel('Balance Score')
     #plt.savefig('../images/box_mf_age.png')
-    #plt.show()
+    plt.show()
 
 def get_y_plots(df):
 
