@@ -2,6 +2,7 @@
 from life_well_main import clean_sort
 import scipy.stats as stats
 from random import sample
+import pandas as pd
 import numpy as np
 
 
@@ -13,7 +14,7 @@ def get_means(lst):
 
     return np.mean(lst)
 
-##GET THE MEAN OF THE BALANCE SCORES
+## GET THE MEAN OF THE BALANCE SCORES
 def mean_malefemale_bal(sorted_gender):
 
     sort_males, sort_females = sorted_gender
@@ -49,7 +50,7 @@ def mean_MF_age_bal(sorted_ga):
 
     return mean_20m_bal, mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal, mean_21f_bal, mean_36f_bal, mean_51f_bal
 
-##GET THE STANDARD DEVIATIONS OF THE BALANCE SCORES
+## GET THE STANDARD DEVIATIONS OF THE BALANCE SCORES
 def get_standard_deviations(lst):
 
     '''
@@ -95,7 +96,9 @@ def std_MF_age_bal(sorted_ga):
 
 def main():
 
-    sort_mf_age, sort_mf, sort_age = clean_sort()
+    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+
+    sort_mf_age, sort_mf, sort_age = clean_sort(df)
 
     ##MEANS
     mmfab = mean_MF_age_bal(sort_mf_age)

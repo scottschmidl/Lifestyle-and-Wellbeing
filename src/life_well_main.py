@@ -17,9 +17,7 @@ def clean_data(df):
 
     return df_fix
 
-def cleaned_groups():
-
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+def cleaned_groups(df):
 
     cleaned_data = clean_data(df)
 
@@ -29,6 +27,12 @@ def cleaned_groups():
 
     return mf_age_group, mf_group, ages_group
 
+# CONVERT BALANCE SCORE COLUMN TO LIST
+def convert_to_list(df):
+
+    '''returns the balance score column as list'''
+
+    return df['bal_score'].tolist()
 
 ## SORT MALE, FEMALE BY AGE
 def sort_mf_age(mf, ages, m_f, mfa_group):
@@ -109,10 +113,10 @@ def sort_ages(ages_group):
 
     return sort_20, sort_21, sort_36, sort_51
 
-def clean_sort():
+def clean_sort(df):
 
     #CLEAN
-    mf_age_group, mf_group, ages_group = cleaned_groups()
+    mf_age_group, mf_group, ages_group = cleaned_groups(df)
 
     #SORT
     sort_mf_age = sort_malefemale_age(mf_age_group)
@@ -123,7 +127,13 @@ def clean_sort():
 
 def main():
 
-    return clean_sort()
+    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+
+    cleansort = clean_sort(df)
+    bal_scores_to_list = convert_to_list(clean_data(df))
+
+    print(cleansort)
+    print(bal_scores_to_list)
 
 if __name__ == '__main__':
     main()

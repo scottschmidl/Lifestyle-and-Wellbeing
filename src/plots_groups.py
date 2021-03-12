@@ -2,6 +2,7 @@ from mean_std_norm import (mean_malefemale_bal, mean_age_bal, mean_MF_age_bal)
 from life_well_main import clean_sort
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pandas as pd
 
 def bar_means(y):
     x = ['male', 'female', '20' , '21', '36', '51', 'm20',
@@ -75,7 +76,8 @@ def box_mf(x1):
 
 def hist_bal_by_mf_age(x):
 
-    titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'], ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
+    titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'],
+                ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
     fig, ax = plt.subplots(2, 4, figsize=(13, 4))
 
     for i in range(2):
@@ -96,16 +98,17 @@ def hist_bal_by_mf_age(x):
 def box_mf_age(x):
 
     fig, ax = plt.subplots(figsize=(13,5), sharey=True)
-    ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less', 'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
+    ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less',
+                            'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
     ax.set_title('5-number summary of males and females by age')
     ax.set_ylabel('Balance Score')
     #plt.savefig('../images/box_mf_age.png')
     #plt.show()
 
-def get_y_plots():
+def get_y_plots(df):
 
     # UNPACK FOR CLEANED AND SORTED
-    sort_mf_age, sort_mf, sort_age = clean_sort()
+    sort_mf_age, sort_mf, sort_age = clean_sort(df)
 
     sort_male_20, sort_male_21, sort_male_36, sort_male_51,\
     sort_female_20, sort_female_21, sort_female_36, sort_female_51 = sort_mf_age
@@ -135,8 +138,10 @@ def get_y_plots():
 
 def main():
 
+    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+
     # VARIABLES FOR PLOT
-    bar_y, hist_age_y, box_ages_y, hist_mf_y, box_mf_y, hist_mf_age_y, box_mf_age_y = get_y_plots()
+    bar_y, hist_age_y, box_ages_y, hist_mf_y, box_mf_y, hist_mf_age_y, box_mf_age_y = get_y_plots(df)
 
     # PLOTS
     bar_means(bar_y)
