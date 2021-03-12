@@ -109,7 +109,7 @@ def sort_ages(ages_group):
 
     return sort_20, sort_21, sort_36, sort_51
 
-def main():
+def clean_sort():
 
     #CLEAN
     mf_age_group, mf_group, ages_group = cleaned_groups()
@@ -119,6 +119,11 @@ def main():
     sort_mf = sort_male_female(mf_group)
     sort_age = sort_ages(ages_group)
 
+    return sort_mf_age, sort_mf, sort_age
+
+def main():
+
+    return clean_sort()
 
 if __name__ == '__main__':
     main()

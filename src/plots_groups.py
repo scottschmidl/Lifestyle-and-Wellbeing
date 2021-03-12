@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 '''
 This need imports from life_well_main in order to run the code properly or placed back into life_well_main
 '''
