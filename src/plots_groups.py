@@ -9,7 +9,7 @@ def bar_means(y):
     x = ['male', 'female', '20' , '21', '36', '51', 'm20',
                 'm21', 'm36', 'm51', 'f20', 'f21', 'f36', 'f51']
 
-    fig, ax = plt.subplots(figsize=(12, 4))
+    _, ax = plt.subplots(figsize=(12, 4))
 
     ax.bar(x, y, width=0.3)
     plt.xticks(rotation=20, fontsize=14)
@@ -23,7 +23,7 @@ def bar_means(y):
 def hist_bal_by_age(x):
 
     titles = [['20 or less', '21 to 35'], ['36 to 50', '51 or more']]
-    fig, ax = plt.subplots(2, 2, figsize=(12, 5))
+    _, ax = plt.subplots(2, 2, figsize=(12, 5))
 
     for i in range(2):
 
@@ -42,7 +42,7 @@ def hist_bal_by_age(x):
 
 def box_ages(x1):
 
-    fig, ax = plt.subplots(figsize=(6,5), sharey=True)
+    _, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2,3,4], labels=['20 or less', '21 to 35', '36 to 50', '51 or more'])
     ax.set_title('5-number summary of ages')
     ax.set_ylabel('Balance Score')
@@ -52,7 +52,7 @@ def box_ages(x1):
 def hist_bal_by_mf(x):
 
     titles = ['males', 'females']
-    fig, ax = plt.subplots(1, 2, figsize=(6,5))
+    _, ax = plt.subplots(1, 2, figsize=(6,5))
 
     for i in range(2):
         sns.distplot(x[i], bins=50, kde=True, ax=ax[i])
@@ -68,7 +68,7 @@ def hist_bal_by_mf(x):
 
 def box_mf(x1):
 
-    fig, ax = plt.subplots(figsize=(6,5), sharey=True)
+    _, ax = plt.subplots(figsize=(6,5), sharey=True)
     ax.boxplot(x1, positions=[1,2], labels=['males','females'])
     ax.set_title('5-number summary of males and females')
     ax.set_ylabel('Balance Score')
@@ -79,7 +79,7 @@ def hist_bal_by_mf_age(x):
 
     titles = [['m: 20 or less', 'm: 21 to 35', 'm: 36 to 50', 'm: 51 or more'],
                 ['f: 20 or less', 'f: 21 to 35', 'f: 36 to 50', 'f: 51 or more']]
-    fig, ax = plt.subplots(2, 4, figsize=(13, 4))
+    _, ax = plt.subplots(2, 4, figsize=(13, 4))
 
     for i in range(2):
 
@@ -98,7 +98,7 @@ def hist_bal_by_mf_age(x):
 
 def box_mf_age(x):
 
-    fig, ax = plt.subplots(figsize=(13,5), sharey=True)
+    _, ax = plt.subplots(figsize=(13,5), sharey=True)
     ax.boxplot(x, labels=['m:20 or less','m:21 to 35', 'm:36 to 50', 'm:51 or more', 'f:20 or less',
                             'f:21 to 35', 'f:36 to 50', 'f:51 or more'])
     ax.set_title('5-number summary of males and females by age')
