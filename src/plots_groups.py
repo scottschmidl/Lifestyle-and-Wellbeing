@@ -108,13 +108,21 @@ def box_mf_age(x):
 
 def get_y_plots():
 
+    # UNPACK FOR CLEANED AND SORTED
     sort_mf_age, sort_mf, sort_age = clean_sort()
 
-    mean_20m_bal, mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal, \
-                            mean_21f_bal, mean_36f_bal, mean_51f_bal = mean_MF_age_bal(sort_mf_age)
+    sort_male_20, sort_male_21, sort_male_36, sort_male_51,\
+    sort_female_20, sort_female_21, sort_female_36, sort_female_51 = sort_mf_age
+    sort_males, sort_females = sort_mf
+    sort_20, sort_21, sort_36, sort_51 = sort_age
+
+    # UNPACK FOR MEANS
+    mean_20m_bal, mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal,\
+    mean_21f_bal, mean_36f_bal, mean_51f_bal = mean_MF_age_bal(sort_mf_age)
     mean_male_bal, mean_female_bal = mean_malefemale_bal(sort_mf)
     mean_20_bal, mean_21_bal, mean_36_bal, mean_51_bal = mean_age_bal(sort_age)
 
+    # DEFINING VARIABLES FOR PLOTTING
     bar_y = [mean_male_bal, mean_female_bal, mean_20_bal, mean_21_bal, mean_36_bal, mean_51_bal, mean_20m_bal,
             mean_21m_bal, mean_36m_bal, mean_51m_bal, mean_20f_bal, mean_21f_bal, mean_36f_bal, mean_51f_bal]
     hist_age_x = [[sort_20, sort_21], [sort_36, sort_51]]
@@ -123,17 +131,18 @@ def get_y_plots():
     box_mf_x1 = [sort_males, sort_females]
     hist_mf_age_x = [[sort_male_20, sort_male_21, sort_male_36, sort_male_51],
                     [sort_female_20, sort_female_21, sort_female_36, sort_female_51]]
-    box_mf_age_x = [sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51]
+    box_mf_age_x = [sort_male_20, sort_male_21, sort_male_36, sort_male_51,\
+                    sort_female_20, sort_female_21, sort_female_36, sort_female_51]
 
 
-    return bar_y, hist_age_y, box_ages_y, hist_mf_y, box_mf_y, hist_mf_age_y, box_mf_age_y
+    return bar_y, hist_age_x, box_ages_x1, hist_mf_x, box_mf_x1, hist_mf_age_x, box_mf_age_x
 
 def main():
 
     # VARIABLES FOR PLOT
     bar_y, hist_age_y, box_ages_y, hist_mf_y, box_mf_y, hist_mf_age_y, box_mf_age_y = get_y_plots()
 
-    #PLOTS
+    # PLOTS
     bar_means(bar_y)
     hist_bal_by_age(hist_age_y)
     box_ages(box_ages_y)
