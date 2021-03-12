@@ -99,23 +99,23 @@ def main():
 
     ##MEANS
     mmfab = mean_MF_age_bal(sort_mf_age)
-    print(mmfab)
+    print(f'\nMean Male, Female Age Balance Score: {mmfab}')
 
     mmfb = mean_malefemale_bal(sort_mf)
-    print(mmfb)
+    print(f'\nMean Male, Female Balance Score: {mmfb}')
 
     mag = mean_age_bal(sort_age)
-    print(mag)
+    print(f'\nMean Age Balance Score: {mag}')
 
     ##STD
     stdmfab = std_MF_age_bal(sort_mf_age)
-    print(stdmfab)
+    print(f'\nStandard Deviation Male, Female Age Balance Score: {stdmfab}')
 
     stdmfb = std_malefemale_bal(sort_mf)
-    print(stdmfb)
+    print(f'\nStandard Deviation Male, Female Balance Score: {stdmfb}')
 
-    stdmag = std_age_bal(sort_age)
-    print(stdmag)
+    stdab = std_age_bal(sort_age)
+    print(f'\nStandard Deviation Age Balance Score: {stdab}')
 
 if __name__ == '__main__':
     main()
