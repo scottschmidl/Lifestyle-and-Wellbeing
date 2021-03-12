@@ -6,59 +6,81 @@ import seaborn as sns
 from random import sample
 import numpy as np
 import scipy.stats as stats
-from life_well_main import *
 
-def group_to_dict(group):
+def group_to_dic_gender(gender):
 
-    '''returns dictionary with group as the key and a subset of the
-        balance score list as the value'''
+    '''
+    returns dictionary with group as the key and a subset of the
+    balance score list as the value
 
-    if group == 'Male':
+    gender - string, either Male or Female
+    '''
 
-        male_dict = {}
+    male_dict = {}
+    female_dict = {}
+
+    if gender == 'Male':
 
         for m in mal_bal.iloc[:, 22:24]:
             male_dict[m] = male_balacc_list
             return mal_dict
 
-    elif group == 'Female':
-
-        female_dict = {}
+    else:
 
         for f in femal_bal.iloc[:, 22:24]:
             female_dict[f] = female_balacc_list
             return femal_dict
 
-    elif group == '20 or less':
-        dict_20 = {}
+def group_to_dic_age(age):
+
+    '''
+    returns dictionary with group as the key and a subset of the
+    balance score list as the value
+
+        age - string
+    '''
+
+    dict_20 = {}
+    dict_21 = {}
+    dict_36 = {}
+    dict_51 = {}
+
+    if age == '20 or less':
         for a in bal_20.iloc[0:, 0:1]:
             dict_20[a] = balacc_list_20
             return dict_20
 
-    elif group == '21 to 35':
-        dict_21 = {}
+    elif age == '21 to 35':
         for a in bal_21.iloc[0:, 0:1]:
             dict_21[a] = balacc_list_21
             return dict_21
 
-    elif group == '36 to 50':
-        dict_36 = {}
+    elif age == '36 to 50':
         for a in bal_36.iloc[0:, 0:1]:
             dict_36[a] = balacc_list_36
             return dict_36
 
-    elif group == '51 or more':
-        dict_51 = {}
+    else:
         for a in bal_51.iloc[0:, 0:1]:
             dict_51[a] = balacc_list_51
             return dict_51
 
-    return 'not a valid group'
+def main():
 
-dict_20 = group_to_dict('20 or less')
+    lst_ages = ['20 or less', '21 to 35', '36 to 50', '51 or more']
+    lst_gender = ['Male', 'Female']
 
-dict_21 = group_to_dict('21 to 35')
+    dic_male = group_to_dic_gender(lst_gender[0])
+    dic_female = group_to_dic_gender(lst_gender[1])
 
-dict_36 = group_to_dict('36 to 50')
+    dic_20 = group_to_dic_age(lst_ages[0])
+    dic_21 = group_to_dic_age(lst_ages[1])
+    dic_36 = group_to_dic_age(lst_ages[2])
+    dic_51 = group_to_dic_age(lst_ages[3])
 
-dict_51 = group_to_dict('51 or more')
+    all_dict = {'dic_male':dic_male, 'dic_femaile':dic_female,'dict_20': dic_20, 'dict_21': dic_21, 'dict_36':dic_36, 'dict_51':dic_51}
+
+    return all_dict
+
+if __name__ == '__main__':
+    main()
