@@ -3,10 +3,6 @@ from life_well_main import clean_sort
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-'''
-This need imports from life_well_main in order to run the code properly or placed back into life_well_main
-'''
-
 def bar_means(y):
     x = ['male', 'female', '20' , '21', '36', '51', 'm20',
                 'm21', 'm36', 'm51', 'f20', 'f21', 'f36', 'f51']
