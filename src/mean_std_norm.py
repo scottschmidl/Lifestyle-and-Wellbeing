@@ -63,8 +63,8 @@ def std_malefemale_bal(sorted_gender):
 
     sort_males, sort_females = sorted_gender
 
-    std_male_bal = get_standard_deviations(sort_males)
-    std_female_bal = get_standard_deviations(sort_females)
+    std_male_bal = round(get_standard_deviations(sort_males), 2)
+    std_female_bal = round(get_standard_deviations(sort_females), 2)
 
     return std_male_bal, std_female_bal
 
@@ -72,10 +72,10 @@ def std_age_bal(sorted_age):
 
     sort_20, sort_21, sort_36, sort_51 = sorted_age
 
-    std_20_bal = get_standard_deviations(sort_20)
-    std_21_bal = get_standard_deviations(sort_21)
-    std_36_bal = get_standard_deviations(sort_36)
-    std_51_bal = get_standard_deviations(sort_51)
+    std_20_bal = round(get_standard_deviations(sort_20), 2)
+    std_21_bal = round(get_standard_deviations(sort_21), 2)
+    std_36_bal = round(get_standard_deviations(sort_36), 2)
+    std_51_bal = round(get_standard_deviations(sort_51), 2)
 
     return std_20_bal, std_21_bal, std_36_bal, std_51_bal
 
@@ -83,14 +83,14 @@ def std_MF_age_bal(sorted_ga):
 
     sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51 = sorted_ga
 
-    std_20m_bal = get_standard_deviations(sort_male_20)
-    std_21m_bal = get_standard_deviations(sort_male_21)
-    std_36m_bal = get_standard_deviations(sort_male_36)
-    std_51m_bal = get_standard_deviations(sort_male_51)
-    std_20f_bal = get_standard_deviations(sort_female_20)
-    std_21f_bal = get_standard_deviations(sort_female_21)
-    std_36f_bal = get_standard_deviations(sort_female_36)
-    std_51f_bal = get_standard_deviations(sort_female_51)
+    std_20m_bal = round(get_standard_deviations(sort_male_20), 2)
+    std_21m_bal = round(get_standard_deviations(sort_male_21), 2)
+    std_36m_bal = round(get_standard_deviations(sort_male_36), 2)
+    std_51m_bal = round(get_standard_deviations(sort_male_51), 2)
+    std_20f_bal = round(get_standard_deviations(sort_female_20), 2)
+    std_21f_bal = round(get_standard_deviations(sort_female_21), 2)
+    std_36f_bal = round(get_standard_deviations(sort_female_36), 2)
+    std_51f_bal = round(get_standard_deviations(sort_female_51), 2)
 
     return std_20m_bal, std_21m_bal, std_36m_bal, std_51m_bal, std_20f_bal, std_21f_bal, std_36f_bal, std_51f_bal
 
@@ -111,14 +111,14 @@ def main():
     print(f'\nMean Age Balance Score: {mag}')
 
     ##STD
-    stdmfab = std_MF_age_bal(sort_mf_age)
-    print(f'\nStandard Deviation Male, Female Age Balance Score: {stdmfab}')
-
     stdmfb = std_malefemale_bal(sort_mf)
     print(f'\nStandard Deviation Male, Female Balance Score: {stdmfb}')
 
     stdab = std_age_bal(sort_age)
     print(f'\nStandard Deviation Age Balance Score: {stdab}')
+
+    stdmfab = std_MF_age_bal(sort_mf_age)
+    print(f'\nStandard Deviation Male, Female Age Balance Score: {stdmfab}')
 
 if __name__ == '__main__':
     main()

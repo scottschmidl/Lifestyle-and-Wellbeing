@@ -1,4 +1,5 @@
 import pandas as pd
+import regex as re
 
 ## CLEAN DATA AND GET CLEANED GROUPS
 def clean_data(df):
@@ -14,6 +15,7 @@ def clean_data(df):
     df.drop(axis=1, index=10005, inplace=True) #this row had an invalid entry for daily_stress
     df_fix = df.astype({'daily_stress':'int64'})
     df_fix.replace('Less than 20', '20 or less', inplace=True)
+    df_fix['timestamp'] = pd.to_datetime(df_fix['timestamp'], infer_datetime_format=True).dt.date.astype('datetime64')
 
     return df_fix
 
@@ -130,10 +132,10 @@ def main():
     df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
 
     cleansort = clean_sort(df)
-    bal_scores_to_list = convert_to_list(clean_data(df))
+    #bal_scores_to_list = convert_to_list(clean_data(df))
 
-    print(cleansort)
-    print(bal_scores_to_list)
+    print(len(cleansort))
+    #print(bal_scores_to_list)
 
 if __name__ == '__main__':
     main()

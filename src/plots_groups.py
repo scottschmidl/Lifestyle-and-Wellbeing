@@ -29,7 +29,7 @@ def hist_bal_by_age(x):
 
         for j in range(2):
 
-            sns.distplot(x[i][j], bins=50, kde=True, ax=ax[i][j])
+            sns.histplot(x[i][j], bins=50, kde=True, ax=ax[i][j])
             ax[i][j].set_title(titles[i][j])
             ax[i][j].set_xlabel('Balance Score')
             ax[i][j].set_ylabel('Kernel Density Estimation')
@@ -55,7 +55,7 @@ def hist_bal_by_mf(x):
     _, ax = plt.subplots(1, 2, figsize=(6,5))
 
     for i in range(2):
-        sns.distplot(x[i], bins=50, kde=True, ax=ax[i])
+        sns.histplot(x[i], bins=50, kde=True, ax=ax[i])
         ax[i].set_title(titles[i])
         ax[i].set_xlabel('Balance Score')
         ax[i].set_ylabel('Kernel Density Estimation')
@@ -85,7 +85,7 @@ def hist_bal_by_mf_age(x):
 
         for j in range(4):
 
-            sns.distplot(x[i][j], bins=50, kde=True, ax=ax[i][j])
+            sns.histplot(x[i][j], bins=50, kde=True, ax=ax[i][j])
             ax[i][j].set_title(titles[i][j])
             ax[i][j].set_xlabel('Balance Score')
             ax[i][j].set_ylabel('Kernel Density Estimation')
@@ -152,6 +152,7 @@ def main():
     box_mf(box_mf_y)
     hist_bal_by_mf_age(hist_mf_age_y)
     box_mf_age(box_mf_age_y)
+    plt.show()
 
 if __name__ == '__main__':
     main()
