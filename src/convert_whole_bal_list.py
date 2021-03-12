@@ -1,5 +1,6 @@
 #extra information: not sure if i will use
-from life_well_main import cleaned_data
+from life_well_main import clean_data
+import pandas as pd
 
 def convert_to_list(df):
 
@@ -7,6 +8,8 @@ def convert_to_list(df):
 
     return df['bal_score'].tolist()
 
-bal_scores_to_list = convert_to_list(cleaned_data)
+df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+
+bal_scores_to_list = convert_to_list(clean_data(df))
 
 print(bal_scores_to_list)
