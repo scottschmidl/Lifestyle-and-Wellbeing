@@ -6,6 +6,21 @@ from life_well_main import clean_data
 import seaborn as sns
 import pandas as pd
 
+def getX_y(df):
+
+    '''
+    RETURNS X, y TO BE USED IN SPLITTING
+    df - PANDAS DATAFRAME
+    '''
+
+    columns = ['bal_score']
+
+    X = df.copy()
+    y = X['bal_score']
+    X = df.drop(columns=columns, axis=1)
+
+    return X, y
+
 def encoding(df, cats_dummie, cats_rename):
 
     '''
@@ -23,29 +38,10 @@ def scale_norm(df):
     SCALES/NORMALIZES THE DF AFTER OHE
     '''
 
-    mmscaled_df = MinMaxScaler().fit_transform(df.values[:, :-1])
-    standard_df = StandardScaler().fit_transform(df.values[:, :-1])
+    vals = df.values
+    mmscaled_df = MinMaxScaler(feature_range=(0, 1)).fit_transform(vals)
 
-    print(mmscaled_df)
-    print('34545yerhfghgdfas')
-    print(standard_df)
-
-
-def getX_y(df):
-
-    '''
-    RETURNS X, y TO BE USED IN SPLITTING
-    df - PANDAS DATAFRAME
-    '''
-
-    columns = ['bal_score']
-    print(df)
-    print(type(df))
-    X = df.copy()
-    y = X['bal_score']
-    X = df.drop(columns=columns, axis=1)
-
-    return X, y
+    return mmscaled_df
 
 def train_split(X, y):
     '''
@@ -88,19 +84,21 @@ def main():
             'age_36 to 50':'age_36_to_50', 'age_51 or more':'age_51_or_more',
             'male_female_Female':'female', 'male_female_Male':'male'}
 
+    #GETTING X, y AND SPLITTING
+    X, y = getX_y(well_life_df)
 
     #ONE HOT ENCODE AGES AND GENDER
-    onehottie = encoding(well_life_df, cat_cols, cols_rename)
+    onehottie = encoding(X, cat_cols, cols_rename)
+
     #SCALE/NORMALIZE DUE TO DIFFERENT VALUES FOR SOME COLUMNS
     scalynormy = scale_norm(onehottie)
 
-    # #GETTING X, y AND SPLITTING
-    # X, y = getX_y(scalynormy)
-    # X_train, X_test, y_train, y_test = train_split(X, y)
-    # print(X_train.shape)
-    # print(y_train.shape)
-    # print(X_test.shape)
-    # print(y_test.shape)
+    #SPLIT INTO TRAINING AND TESTING
+    X_train, X_test, y_train, y_test = train_split(scalynormy, y)
+    print(X_train.shape)
+    print(y_train.shape)
+    print(X_test.shape)
+    print(y_test.shape)
 
     # pipes = pipe_line()
 
