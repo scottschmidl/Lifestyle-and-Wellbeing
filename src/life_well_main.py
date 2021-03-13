@@ -16,6 +16,7 @@ def clean_data(df):
     df_fix = df.astype({'daily_stress':'int64'})
     df_fix.replace('Less than 20', '20 or less', inplace=True)
     df_fix['timestamp'] = pd.to_datetime(df_fix['timestamp'], infer_datetime_format=True).dt.date.astype('datetime64')
+    df_fix = df_fix.iloc[:, 1:]
 
     return df_fix
 
@@ -41,7 +42,7 @@ def sort_mf_age(mf, ages, m_f, mfa_group):
     '''
 
     mf_ages = mfa_group.get_group((f'{mf}', f'{ages}'))
-    mf_ages_bal = mf_ages.iloc[:, 21:24]
+    mf_ages_bal = mf_ages.iloc[:, 20:23]
     mf_ages_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
 
     return mf_ages_bal
@@ -71,7 +72,7 @@ def sort_mf(mf, m_f, mf_group):
     '''
 
     male_female = mf_group.get_group(f'{mf}')
-    mf_bal = male_female.iloc[:, 22:24]
+    mf_bal = male_female.iloc[:, 21:23]
     mf_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
 
     return mf_bal
@@ -93,7 +94,7 @@ def sort_age(ages, ages_group):
     '''
 
     group_of_ages = ages_group.get_group(f'{ages}')
-    bal_ages = group_of_ages.iloc[:, 21:24:2]
+    bal_ages = group_of_ages.iloc[:, 20:24:2]
     bal_ages.rename(columns={'age':f'{ages}'})
 
     return bal_ages
