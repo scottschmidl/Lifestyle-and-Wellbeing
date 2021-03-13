@@ -29,13 +29,6 @@ def cleaned_groups(df):
 
     return mf_age_group, mf_group, ages_group
 
-# CONVERT BALANCE SCORE COLUMN TO LIST
-def convert_to_list(df):
-
-    '''returns the balance score column as list'''
-
-    return df['bal_score'].tolist()
-
 ## SORT MALE, FEMALE BY AGE
 def sort_mf_age(mf, ages, m_f, mfa_group):
 
@@ -50,21 +43,20 @@ def sort_mf_age(mf, ages, m_f, mfa_group):
     mf_ages = mfa_group.get_group((f'{mf}', f'{ages}'))
     mf_ages_bal = mf_ages.iloc[:, 21:24]
     mf_ages_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
-    mf_ages_scores = mf_ages_bal['bal_score'].tolist()
 
-    return mf_ages_scores
+    return mf_ages_bal
 
 def sort_malefemale_age(mfa_group):
 
-    sort_male_20 = sort_mf_age('Male', '20 or less', 'males', mfa_group)
-    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males', mfa_group)
-    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males', mfa_group)
-    sort_male_51 = sort_mf_age('Male', '51 or more', 'males', mfa_group)
+    sort_male_20 = sort_mf_age('Male', '20 or less', 'males', mfa_group)['bal_score'].to_list()
+    sort_male_21 = sort_mf_age('Male', '21 to 35', 'males', mfa_group)['bal_score'].to_list()
+    sort_male_36 = sort_mf_age('Male', '36 to 50', 'males', mfa_group)['bal_score'].to_list()
+    sort_male_51 = sort_mf_age('Male', '51 or more', 'males', mfa_group)['bal_score'].to_list()
 
-    sort_female_20 = sort_mf_age('Female', '20 or less', 'females', mfa_group)
-    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females', mfa_group)
-    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females', mfa_group)
-    sort_female_51 = sort_mf_age('Female', '51 or more', 'females', mfa_group)
+    sort_female_20 = sort_mf_age('Female', '20 or less', 'females', mfa_group)['bal_score'].to_list()
+    sort_female_21 = sort_mf_age('Female', '21 to 35', 'females', mfa_group)['bal_score'].to_list()
+    sort_female_36 = sort_mf_age('Female', '36 to 50', 'females', mfa_group)['bal_score'].to_list()
+    sort_female_51 = sort_mf_age('Female', '51 or more', 'females', mfa_group)['bal_score'].to_list()
 
     return sort_male_20, sort_male_21, sort_male_36, sort_male_51, sort_female_20, sort_female_21, sort_female_36, sort_female_51
 
@@ -81,13 +73,13 @@ def sort_mf(mf, m_f, mf_group):
     male_female = mf_group.get_group(f'{mf}')
     mf_bal = male_female.iloc[:, 22:24]
     mf_bal.rename(columns={'male_female':f'{m_f}'}, inplace=True)
-    mf_bal_scores = mf_bal['bal_score'].tolist()
-    return mf_bal_scores
+
+    return mf_bal
 
 def sort_male_female(mf_group):
 
-    sort_males = sort_mf('Male', 'males', mf_group)
-    sort_females = sort_mf('Female', 'females', mf_group)
+    sort_males = sort_mf('Male', 'males', mf_group)['bal_score'].to_list()
+    sort_females = sort_mf('Female', 'females', mf_group)['bal_score'].to_list()
 
     return sort_males, sort_females
 
@@ -103,15 +95,15 @@ def sort_age(ages, ages_group):
     group_of_ages = ages_group.get_group(f'{ages}')
     bal_ages = group_of_ages.iloc[:, 21:24:2]
     bal_ages.rename(columns={'age':f'{ages}'})
-    balscore_list_age = bal_ages['bal_score'].tolist()
-    return balscore_list_age
+
+    return bal_ages
 
 def sort_ages(ages_group):
 
-    sort_20 = sort_age('20 or less', ages_group)
-    sort_21 = sort_age('21 to 35', ages_group)
-    sort_36 = sort_age('36 to 50', ages_group)
-    sort_51 = sort_age('51 or more', ages_group)
+    sort_20 = sort_age('20 or less', ages_group)['bal_score'].to_list()
+    sort_21 = sort_age('21 to 35', ages_group)['bal_score'].to_list()
+    sort_36 = sort_age('36 to 50', ages_group)['bal_score'].to_list()
+    sort_51 = sort_age('51 or more', ages_group)['bal_score'].to_list()
 
     return sort_20, sort_21, sort_36, sort_51
 
@@ -130,12 +122,7 @@ def clean_sort(df):
 def main():
 
     df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
-
-    cleansort = clean_sort(df)
-    #bal_scores_to_list = convert_to_list(clean_data(df))
-
-    print(len(cleansort))
-    #print(bal_scores_to_list)
+    clean_sort(df)
 
 if __name__ == '__main__':
     main()
