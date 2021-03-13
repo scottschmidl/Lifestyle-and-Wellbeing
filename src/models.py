@@ -1,7 +1,6 @@
 #place holder for machine learning models
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.pipeline import Pipeline
 from life_well_main import clean_data
 import seaborn as sns
 import pandas as pd
@@ -24,7 +23,7 @@ def getX_y(df):
 def encoding(df, cats_dummie, cats_rename):
 
     '''
-    RETURN A ONE HOT ENCODED DATAFRAMe FOR AGE AND GENDER
+    RETURN A ONE HOT ENCODED DATAFRAME FOR AGE AND GENDER
     '''
 
     encode_me = pd.get_dummies(data=df, columns=cats_dummie, dtype=int)
@@ -55,31 +54,18 @@ def train_split(X, y):
 
     return X_train, X_test, y_train, y_test
 
-
-def pipe_line():
-
-    '''
-    GETS THE PIPELINE GOING FOR EASE OF MODELING
-    '''
-
-    pip_me_up = Pipeline()
+def models(X_train, X_test, y_train, y_test):
     pass
-
 
 
 def main():
 
     #GET AND CLEAN DATA
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+    filepath = 'data/wellbeing-lifestyle-cs1.csv'
+    df = pd.read_csv(filepath)
     well_life_df = clean_data(df)
 
     cat_cols = ['age', 'male_female']
-    # numeric_cols = ['fruits_veggies', 'daily_stress', 'places_visited',
-    #                 'core_circle', 'supporting_others', 'social_network', 'achievement',
-    #                 'donation', 'bmi_range', 'todo_completed', 'flow', 'daily_steps',
-    #                 'live_vision', 'sleep_hours', 'lost_vacation', 'daily_shouting',
-    #                 'sufficient_income', 'personal_awards', 'time_for_passion',
-    #                 'daily_meditation',  'bal_score']
     cols_rename = {'age_20 or less':'age_20_or_less', 'age_21 to 35':'age_21_to_35',
             'age_36 to 50':'age_36_to_50', 'age_51 or more':'age_51_or_more',
             'male_female_Female':'female', 'male_female_Male':'male'}
@@ -100,7 +86,6 @@ def main():
     print(X_test.shape)
     print(y_test.shape)
 
-    # pipes = pipe_line()
 
 
 if __name__ == '__main__':

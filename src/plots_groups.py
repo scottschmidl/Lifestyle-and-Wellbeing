@@ -139,7 +139,9 @@ def get_y_plots(df):
 
 def main():
 
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+    filepath = '../data/wellbeing-lifestyle-cs1.csv'
+
+    df = pd.read_csv(filepath)
 
     # VARIABLES FOR PLOT
     bar_y, hist_age_y, box_ages_y, hist_mf_y, box_mf_y, hist_mf_age_y, box_mf_age_y = get_y_plots(df)

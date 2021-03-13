@@ -1,5 +1,4 @@
 import pandas as pd
-import regex as re
 
 ## CLEAN DATA AND GET CLEANED GROUPS
 def clean_data(df):
@@ -122,7 +121,9 @@ def clean_sort(df):
 
 def main():
 
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+    filepath = '../data/wellbeing-lifestyle-cs1.csv'
+
+    df = pd.read_csv(filepath)
     clean_sort(df)
 
 if __name__ == '__main__':

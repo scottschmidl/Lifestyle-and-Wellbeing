@@ -96,7 +96,9 @@ def std_MF_age_bal(sorted_ga):
 
 def main():
 
-    df = pd.read_csv('data/wellbeing-lifestyle-cs1.csv')
+    filepath = 'data/wellbeing-lifestyle-cs1.csv'
+
+    df = pd.read_csv(filepath)
 
     sort_mf_age, sort_mf, sort_age = clean_sort(df)
 
