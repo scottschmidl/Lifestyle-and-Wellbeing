@@ -1,8 +1,9 @@
 #place holder for machine learning models
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.model_selection import (train_test_split, RandomizedSearchCV, GridSearchCV)
+from sklearn.metrics import (mean_squared_error, mean_absolute_error, explained_variance_score)
+from sklearn.preprocessing import (StandardScaler, MinMaxScaler)
+from sklearn.ensemble import RandomForestRegressor
 from life_well_main import clean_data
-import seaborn as sns
 import pandas as pd
 
 def getX_y(df):
@@ -54,8 +55,49 @@ def train_split(X, y):
 
     return X_train, X_test, y_train, y_test
 
+def grid_search(X_train, X_test, y_train, y_test):
+
+    random_forest_grid = {'max_depth': [3, 5, None],
+                        'max_features': ['sqrt', 'log2', None],
+                        'min_samples_split': [2, 4],
+                        'min_samples_leaf': [1, 5, 10, 15],
+                        'bootstrap': [True, False],
+                        'n_estimators': [20, 40, 50, 100, 200],
+                        'random_state': [1]}
+
+    rf_gridsearch = RandomizedSearchCV(RandomForestRegressor(),
+                                random_forest_grid,
+                                n_iter = 200,
+                                n_jobs=-1,
+                                verbose=True,
+                                scoring='accuracy')
+    rf_gridsearch.fit(X_train, y_train)
+
+    #print("Random Forest best parameters:", rf_gridsearch.best_params_)
+
+    best_rf_model = rf_gridsearch.best_estimator_
+
+    return best_rf_model
+
 def models(X_train, X_test, y_train, y_test):
-    pass
+
+    '''
+    Runs the model to predict a persons lifestyle and wellness score
+    X_train - np array
+    X_test - np array
+    y_train - np array
+    y_test - np array
+    '''
+    rf = RandomForestRegressor(n_estimators=100, criterion='mse', max_depth=10, min_samples_split=2,
+                                min_samples_leaf=1, max_features='auto', bootstrap=True, n_jobs=None,
+                                random_state=1, warm_start=True, max_samples=X_train.shape[0])
+    rf.fit(X_train, y_train)
+    y_pred = rf.predict(X_test)
+
+    mse = mean_squared_error(y_test, y_pred, squared=True)
+    evs = explained_variance_score(y_test, y_pred)
+
+    return mse, evs
 
 
 def main():
@@ -81,12 +123,10 @@ def main():
 
     #SPLIT INTO TRAINING AND TESTING
     X_train, X_test, y_train, y_test = train_split(scalynormy, y)
-    print(X_train.shape)
-    print(y_train.shape)
-    print(X_test.shape)
-    print(y_test.shape)
 
-
+    #RUN MODELS AND PRINT RESULTS
+    print('mean squared error: ', models(X_train, X_test, y_train, y_test)[0])
+    print('explained variance: ', models(X_train, X_test, y_train, y_test)[1])
 
 if __name__ == '__main__':
     main()
