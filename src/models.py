@@ -55,25 +55,30 @@ def train_split(X, y):
 
     return X_train, X_test, y_train, y_test
 
-def grid_search(X_train, X_test, y_train, y_test):
+def grid_search(X_train, y_train):
 
-    random_forest_grid = {'max_depth': [3, 5, None],
-                        'max_features': ['sqrt', 'log2', None],
-                        'min_samples_split': [2, 4],
-                        'min_samples_leaf': [1, 5, 10, 15],
-                        'bootstrap': [True, False],
-                        'n_estimators': [20, 40, 50, 100, 200],
-                        'random_state': [1]}
+    random_forest_grid = {'n_estimators': [20, 40, 50, 100, 200],
+                            'criterion': ['mse', 'mae'],
+                            'max_depth': [3, 5,10, None],
+                            'min_samples_split': [2, 4, 6],
+                            'min_samples_leaf':[1, 2, 4],
+                            'max_features': ['auto', 'sqrt', 'log2', None],
+                            'bootstrap': [True, False],
+                            'n_jobs': [1,2, 4, None],
+                            'random_state': [1],
+                            'warm_start': [True, False],
+                            'max_samples': [1, 2, 4, None]}
 
     rf_gridsearch = RandomizedSearchCV(RandomForestRegressor(),
-                                random_forest_grid,
+                                param_distributions=random_forest_grid,
                                 n_iter = 200,
                                 n_jobs=-1,
-                                verbose=True,
-                                scoring='accuracy')
+                                verbose=1,
+                                scoring=None)
+
     rf_gridsearch.fit(X_train, y_train)
 
-    #print("Random Forest best parameters:", rf_gridsearch.best_params_)
+    print("Random Forest best parameters:", rf_gridsearch.best_params_)
 
     best_rf_model = rf_gridsearch.best_estimator_
 
@@ -124,9 +129,13 @@ def main():
     #SPLIT INTO TRAINING AND TESTING
     X_train, X_test, y_train, y_test = train_split(scalynormy, y)
 
+    #GRIDSEARCH FOR BEST PARAMETERS
+    best_rf_model = grid_search(X_train, y_train)
+    print(best_rf_model)
+
     #RUN MODELS AND PRINT RESULTS
-    print('mean squared error: ', models(X_train, X_test, y_train, y_test)[0])
-    print('explained variance: ', models(X_train, X_test, y_train, y_test)[1])
+    # print('mean squared error: ', models(X_train, X_test, y_train, y_test)[0])
+    # print('explained variance: ', models(X_train, X_test, y_train, y_test)[1])
 
 if __name__ == '__main__':
     main()
