@@ -109,7 +109,6 @@ def models(X_train, X_test, y_train, y_test):
 
     return mse, evs
 
-
 def main():
 
     #GET AND CLEAN DATA
@@ -140,7 +139,6 @@ def main():
         # BEST ESTIMATOR:
         # RandomForestRegressor(bootstrap=False, max_features='sqrt', min_samples_split=6,
         #                     n_jobs=4, random_state=1, warm_start=True)
-
 
     #RUN MODELS AND PRINT RESULTS
     print('mean squared error: ', models(X_train, X_test, y_train, y_test)[0])
