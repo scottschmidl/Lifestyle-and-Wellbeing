@@ -6,6 +6,13 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from life_well_main import clean_data
 import pandas as pd
 
+"""
+MEAN ABSOLUTE ERROR IS USED VS ROOT MEAN SQUARED ERROR
+------------------------------------------------------
+MAE > being off by 10 is TWICE as bad as being off by 5
+RMSE > being off by 10 is MORE THAN TWICE as bad as being off by 5 > more sensitive to observations that are further from the mean.
+"""
+
 def getX_y(df):
 
     '''
