@@ -2,14 +2,15 @@
 
 
 # Table of Contents
-1. [Background and Motivation](#BackGround-and-Motivation)
-2. [Questions](#Questions)
-3. [Data](#Data)
-4. [Closer Look](#Closer-Look)
-5. [Visualization](#Visualization)
-6. [Conclusion](#Conclusion)
-7. [Photo and Data Credits](#Photo-and-Data-Credits)
-8. [Extras](#Extras)
+- [Table of Contents](#table-of-contents)
+- [Background and Motivation](#background-and-motivation)
+- [Data](#data)
+- [Questions](#questions)
+- [Closer Look](#closer-look)
+- [Visualization](#visualization)
+- [Conclusion](#conclusion)
+- [Photo and Data Credits](#photo-and-data-credits)
+- [Extras](#extras)
 
 # Background and Motivation
 
@@ -30,13 +31,13 @@ The ‘Lifestyle_and_Wellbeing_Data’ was gathered using 12,757 survey response
 Raw Data:
 
 |timestamp | fruits_veggies | daily_stress | places_visited | core_circle | supporting_others | social_network | achievment | donation | bmi_range | todo_complete | flow | daily_steps | live_vision | sleep_hours | lost_vacation | daily_shouting | sufficient_income | personal_awards | time_for_passion | daily_meditation |        age | male_female | bal_score |
-|      --: |            --: |          --: |            --: |         --: |               --: |           --:  |        --: |       --:|       --: |       --:     | --:  |    --:      |    --:      |      --:    |       --:     |          --:   |             --:   |         --:     |       --:        |             --:  |      --:   |          --:|   --:     | 
+|      --: |            --: |          --: |            --: |         --: |               --: |           --:  |        --: |       --:|       --: |       --:     | --:  |    --:      |    --:      |      --:    |       --:     |          --:   |             --:   |         --:     |       --:        |             --:  |      --:   |          --:|   --:     |
 |   7/7/15 |              3 |            2 |              2 |           5 |                 0 |              5 |          2 |        0 |         1 |            6  |  4   |         5   |          0  |         7   |            5  |              5 |                 1 |               4 |                0 |                5 |   36 to 50 |      Female |        60 |
 |   7/7/15 |              2 |            3 |              4 |           3 |                 8 |             10 |          5 |        2 |         2 |            5  |  2   |         5   |          5  |         8   |            2  |              2 |                 2 |               3 |                2 |                6 |   36 to 50 |      Female |        78 |
 |   7/7/15 |              2 |            3 |              3 |           4 |                 4 |             10 |          3 |        2 |         2 |            2  |  2   |         4   |          5  |         8   |           10  |              2 |                 2 |               4 |                8 |                3 |   36 to 50 |      Female |        80 |
 |   7/7/15 |              3 |            3 |             10 |           3 |                10 |              7 |          2 |        5 |         2 |            3  |  5   |         5   |          0  |         5   |            7  |              5 |                 1 |               5 |                2 |                0 | 51 or more |      Female |        80 |
 |   7/7/15 |              5 |            1 |              3 |           3 |                10 |              4 |          2 |        4 |         2 |            6  |  0   |         5   |          0  |         7   |            0  |              0 |                 2 |               8 |                1 |                5 | 51 or more |      Female |        66 |
-                                                                                                                
+
 Table Info:
 
 ![](https://github.com/scottschmidl/Lifestyle-and-Wellbeing/blob/master/images/columns.png)
@@ -47,7 +48,7 @@ I am interested in discovering which groups have the better or worse work-life b
 
 Which brings me to my question:
 
-Which demographic, amongst three different groups, has the better or worse work-life balance when compared to others in their group? 
+Which demographic, amongst three different groups, has the better or worse work-life balance when compared to others in their group?
 
 # Closer Look
 
@@ -58,7 +59,7 @@ From min_max_poss.py:
 min possible score = 4
 max possible score = 169
 
- I, then, isolated the data three times and by the columns: males and females, age ranges, and finally by males and females by ages.
+I, then, isolated the data three times and by the columns: males and females, age ranges, and finally by males and females by ages.
 
 Upon completion I moved on to inspect the means of those three areas described below:
 
@@ -68,7 +69,7 @@ Means to note: 'males' are lower than females, '21 to 35' is lower than the othe
 
 # Visualization
 
-The above results lead me to the below distributions. All of the results below are around 80 +- 5 over and 3 under. It appeared that this had the potential to be normally distributed, since 80 is about half. 
+The above results lead me to the below distributions. All of the results below are around 80 +- 5 over and 3 under. It appeared that this had the potential to be normally distributed, since 80 is about half.
 
 As I was unsure of the exact distribution I decided to plot against a kernel density estimation. KDE is a non-parametric estimate of the PDF. Non-parametrized means that the data distrubtion is unknown or known but with uncertain parameters. As you can see from the below graphs the data is nearly normal distributed with some quite large standard deviations.
 
@@ -132,7 +133,7 @@ Q1) How many steps(in thousads) do you typically walk everyday?
 
 Q2) How many people are very close to you?
 
-[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 Q3) How many people are very close to you?
 

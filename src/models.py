@@ -1,8 +1,8 @@
 #place holder for machine learning models
 from sklearn.model_selection import (train_test_split, RandomizedSearchCV, GridSearchCV)
-from sklearn.metrics import (mean_squared_error, mean_absolute_error, explained_variance_score)
+from sklearn.metrics import (mean_absolute_error, explained_variance_score)
 from sklearn.preprocessing import (StandardScaler, MinMaxScaler)
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from life_well_main import clean_data
 import pandas as pd
 
@@ -55,6 +55,14 @@ def train_split(X, y):
 
     return X_train, X_test, y_train, y_test
 
+def baseline(y_train):
+
+    act_pred_error = pd.DataFrame({"actual": y_train})
+    act_pred_error["baseline_prediction"] = y_train.mean()
+    basline_mae = mean_absolute_error(act_pred_error["actual"], act_pred_error["baseline_prediction"])
+
+    return basline_mae
+
 def grid_search(X_train, y_train):
 
     '''
@@ -62,7 +70,7 @@ def grid_search(X_train, y_train):
     '''
 
     random_forest_grid = {'n_estimators': [20, 40, 50, 100, 200],
-                            'criterion': ['mse', 'mae'],
+                            'criterion': ['squared_error', 'absolute_error'],
                             'max_depth': [3, 5,10, None],
                             'min_samples_split': [2, 4, 6],
                             'min_samples_leaf':[1, 2, 4],
@@ -74,10 +82,11 @@ def grid_search(X_train, y_train):
 
     rf_gridsearch = RandomizedSearchCV(RandomForestRegressor(),
                                 param_distributions=random_forest_grid,
-                                n_iter = 200,
+                                n_iter = 100,
                                 n_jobs=-1,
-                                verbose=5,
-                                scoring=None)
+                                refit="neg_root_mean_squared_error",
+                                verbose=1,
+                                scoring=["neg_mean_absolute_error", "neg_root_mean_squared_error"])
 
     rf_gridsearch.fit(X_train, y_train)
 
@@ -98,16 +107,17 @@ def models(X_train, X_test, y_train, y_test):
     '''
 
     # BEST PARAMETERS FROM GRID SEARCH USING RANDOMIZED SEARCH CV
-    rf = RandomForestRegressor(n_estimators=100, criterion='mse', max_depth=None, min_samples_split=6,
-                                min_samples_leaf=1, max_features='sqrt', bootstrap=False, n_jobs=4,
-                                random_state=1, warm_start=True, max_samples=None)
+    rf = RandomForestRegressor(n_estimators=200, criterion='absolute_error', max_depth=None, min_samples_split=4,
+                                min_samples_leaf=2, max_features='sqrt', bootstrap=False, n_jobs=4,
+                                random_state=1, warm_start=False, max_samples=None)
+
     rf.fit(X_train, y_train)
     y_pred = rf.predict(X_test)
 
-    mse = mean_squared_error(y_test, y_pred, squared=True)
+    mae = mean_absolute_error(y_test, y_pred)
     evs = explained_variance_score(y_test, y_pred)
 
-    return mse, evs
+    return mae, evs
 
 def main():
 
@@ -133,16 +143,20 @@ def main():
     #SPLIT INTO TRAINING AND TESTING
     X_train, X_test, y_train, y_test = train_split(scalynormy, y)
 
+    #BASELINE
+    print(f"Baseline MAE: {round(baseline(y_train), )}")
+
     #GRIDSEARCH FOR BEST PARAMETERS
-    #best_rf_model = grid_search(X_train, y_train)
+    # TODO: grid search needs to be rerun when there is time.
+    # best_rf_model = grid_search(X_train, y_train)
         # BEST PARAMETERS ARE CURRENTLY BEING USING
         # BEST ESTIMATOR:
         # RandomForestRegressor(bootstrap=False, max_features='sqrt', min_samples_split=6,
         #                     n_jobs=4, random_state=1, warm_start=True)
 
     #RUN MODELS AND PRINT RESULTS
-    print('mean squared error: ', models(X_train, X_test, y_train, y_test)[0])
-    print('explained variance: ', models(X_train, X_test, y_train, y_test)[1])
+    print(f"Mean Absolute Error:  {round(models(X_train, X_test, y_train, y_test)[0], 1)}")
+    # print('explained variance: ', models(X_train, X_test, y_train, y_test)[1])
 
 if __name__ == '__main__':
     main()

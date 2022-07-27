@@ -7,7 +7,8 @@ def clean_data(df):
     clean data and get a new datafram
     df - pandas dataframe
     '''
-
+    # TODO: address the issue of summing across object features that are in fact numeric
+    # TODO: change feature data types
     df['bal_score'] = df.sum(axis=1)
     df.columns = map(str.lower, df.columns)
     df.rename(columns={'gender':'male_female'}, inplace=True)
